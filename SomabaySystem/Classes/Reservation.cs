@@ -9,44 +9,57 @@ using System.Data.SqlClient;
 
 namespace HostelReservation.Classes
 {
-    public class Reservation
+    public class Reservation : IBaseInterface
     {
-        private DateOnly reservationCheckIn;
-        private DateOnly reservationCheckOut;
-        public static void InsertReservation()
+        public DateTime ReservationCheckIn { get; set; }
+        public DateTime ReservationCheckOut { get; set; }
+        public int RoomID { get; set; }
+        public int CustomerID { get; set; }
+
+
+        public void Create(object obj)
         {
-            Console.WriteLine("Enter reservation details:");
+            Reservation reservation = new Reservation();
+            reservation = (Reservation)obj;
 
-            Console.Write("Room ID: ");
-            int roomID = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Customer ID: ");
-            int customerID = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Check-in date (yyyy-mm-dd): ");
-            DateTime checkInDate = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("Check-out date (yyyy-mm-dd): ");
-            DateTime checkOutDate = DateTime.Parse(Console.ReadLine());
-
+            Reservation re = new Reservation();
             using (SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=Somabay;Integrated Security=True"))
             {
-                connection.Open();
 
-                string insertQuery = "INSERT INTO Reservation VALUES (@ReservationCheckIn, @ReservationCheckOut, @RoomID, @CustomerID) " +
-                    ";UPDATE Room SET RoomStatus = 't' WHERE RoomID = "+ roomID + "; ";
+                bool isConnectionOpen = (connection.State == System.Data.ConnectionState.Open);
+                reservation.RoomID = RoomID;
+                reservation.CustomerID = CustomerID;
+                reservation.ReservationCheckIn = ReservationCheckIn;
+                reservation.ReservationCheckOut = ReservationCheckOut;
+
+                string insertQuery = "INSERT INTO Reservation VALUES (@ReservationCheckIn, @ReservationCheckOut, @RoomID, @CustomerID);UPDATE Room SET RoomStatus = 'U' WHERE RoomID = @RoomID; ";
 
                 using (SqlCommand command = new SqlCommand(insertQuery, connection))
                 {
-                    command.Parameters.AddWithValue("@ReservationCheckIn", checkInDate);
-                    command.Parameters.AddWithValue("@ReservationCheckOut", checkOutDate);
-                    command.Parameters.AddWithValue("@RoomID", roomID);
-                    command.Parameters.AddWithValue("@CustomerID", customerID);
+                    connection.Open();
+                    command.Parameters.AddWithValue("@ReservationCheckIn", ReservationCheckIn);
+                    command.Parameters.AddWithValue("@ReservationCheckOut", ReservationCheckOut);
+                    command.Parameters.AddWithValue("@RoomID", RoomID);
+                    command.Parameters.AddWithValue("@CustomerID", CustomerID);
 
                     command.ExecuteNonQuery();
                 }
             }
         }
 
+        public void Delete(object DeleteObj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read(object ReadObj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(object UpdateObj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
