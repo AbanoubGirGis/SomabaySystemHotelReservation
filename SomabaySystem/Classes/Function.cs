@@ -89,5 +89,41 @@ namespace HostelReservation.Classes
 
         }
         #endregion
+
+        #region Hotel Functions
+        public void CreateHotels()
+        {
+            Hotels h = new Hotels();
+            Console.Write("Enter Hotels ID: ");
+            h.ID = int.Parse(Console.ReadLine());
+            Console.Write("Enter Hotel Name: ");
+            h.Name = Console.ReadLine();
+            Console.Write("Enter ZipCode of hotels : ");
+            h.ZipCode = int.Parse(Console.ReadLine());
+            Console.Write("Enter Phone Number: ");
+            h.PhoneNumber = Console.ReadLine();
+            Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
+            h.Create(h);
+        }
+
+        public void SelectHotels()
+        {
+            Hotels hotels = new Hotels();
+            hotels.Read(hotels);
+        }
+
+        public void updateeHotels()
+        {
+            Hotels H = new Hotels();
+            H.Update(H);
+        }
+
+        public void deleteeHotels()
+        {
+            Hotels H = new Hotels();
+            H.Delete(H);
+        }
+
+        #endregion
     }
 }
