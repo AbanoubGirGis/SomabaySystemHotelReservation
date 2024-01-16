@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Numerics;
 using System.Reflection.Emit;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleTables;
@@ -64,7 +65,7 @@ namespace HostelReservation.Classes
             customer = (Customer)CreateObj;
 
 
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=Somabay;Integrated Security=True"))
             {
                 con.Open();
 
@@ -113,11 +114,14 @@ namespace HostelReservation.Classes
 
         }
 
+
+
+
         public void Update(object UpdateObj)
         {
             Customer customer = new Customer();
             customer = (Customer)UpdateObj;
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=Somabay;Integrated Security=True"))
             {
                 con.Open();
                 string updateCustomer = $"update Customer set CustomerFullName='{customer.FullName}',CustomerCity='{customer.City}',CustomerPhone='{customer.Phonenumber}' where CustomerId={customer.ID}";
@@ -127,26 +131,32 @@ namespace HostelReservation.Classes
                     Console.WriteLine("**********Updated successfull");
                     reader.Close();
                 }
-                //string select = $"select * from Customer where CustomerId={customer.ID}";
-                //using (SqlCommand command1 = new SqlCommand(select, con))
-                //{
-                //    SqlDataReader sqlDataReader = command1.ExecuteReader();
-                //    if (sqlDataReader.HasRows)
-                //    {
-                //        int customerid = sqlDataReader.GetInt32(0);
-                //        string fullname = sqlDataReader.GetString(1);
-                //        string city = sqlDataReader.GetString(2);
-                //        string phonenumber = sqlDataReader.GetString(3);
-                //        Console.WriteLine($"the customer id is {customerid}" +
-                //            $" ,Name = {fullname} ," +
-                //            $" city = {city} ," +
-                //            $"phone number = {phonenumber}");
-                //    }
-                //    else { Console.WriteLine("not updated"); }
-                //}
+                
+                string select = $"select * from Customer where CustomerId = 2";
+                using (SqlCommand command1 = new SqlCommand(select, con))
+                {
+                    SqlDataReader sqlDataReader = command1.ExecuteReader();
+                    if (sqlDataReader.HasRows) { 
+                        while (sqlDataReader.Read())
+                    {
+                        int customerid = sqlDataReader.GetInt32(0);
+                        string fullname = sqlDataReader.GetString(1);
+                        string city = sqlDataReader.GetString(2);
+                        string phonenumber = sqlDataReader.GetString(3);
+                        Console.WriteLine($"the customer id is {customerid}" +
+                            $" ,Name = {fullname} ," +
+                            $" city = {city} ," +
+                            $"phone number = {phonenumber}");
+                    }
+                    }
+                    else { Console.WriteLine("not updated"); }
+                }
                 con.Close();
             }
         }
+
+
+
         public void Delete(object DeleteObj)
         {
             Customer customer = new Customer();

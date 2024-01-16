@@ -8,13 +8,16 @@ namespace HostelReservation
         static void Main(string[] args)
         {
             //Console.WriteLine("\t \t \t \t  ***** --- ***** --- ***** --- ***** Welcome to Soma Pay ***** --- ***** --- ***** --- *****");
-            Console.WriteLine("\n\n");
-            string textToEnter ="***** --- ***** --- ***** --- ***** Welcome to Soma Pay ***** --- ***** --- ***** --- *****";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
-            Console.WriteLine("\n\n\n\n\n");
+            //Console.WriteLine("\n\n");
+            //string textToEnter ="***** --- ***** --- ***** --- ***** Welcome to Soma Pay ***** --- ***** --- ***** --- *****";
+            //Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            //Console.WriteLine("\n\n\n\n\n");
 
-            Admin admin = new Admin();
-            admin.AdminMethod();
+            //Admin admin = new Admin();
+            //admin.AdminMethod();
+
+            //Function function = new Function();
+            //function.updatecustomer();
         }
     }
 }

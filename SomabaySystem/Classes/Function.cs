@@ -149,5 +149,10 @@ namespace HostelReservation.Classes
         }
 
         #endregion
+
+
+        #region Reservation Function
+
+        #endregion
     }
 }
