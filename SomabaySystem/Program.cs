@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using HostelReservation.Classes;
 using SomabaySystem;
+using SomabaySystem.Admin_VS_Receptionist;
 using SomabaySystem.Classes;
 namespace HostelReservation
 {
@@ -15,7 +16,8 @@ namespace HostelReservation
 
             Welcome welcome = new Welcome();
             welcome.WelcomeMethod();
-      
+            
+
         }
     }
 }

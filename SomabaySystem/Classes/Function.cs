@@ -141,7 +141,8 @@ namespace HostelReservation.Classes
         {
             Hotels H = new Hotels();
             Console.WriteLine("Enter The Hotel Id");
-            H.ID = int.Parse(Console.ReadLine());
+
+            FunctionsValidation.ValidationID(H.ID);
             if (FunctionsValidation.DoesHotelExistValdition(H.ID))
             {
                 Console.WriteLine("Enter The Hotel name");

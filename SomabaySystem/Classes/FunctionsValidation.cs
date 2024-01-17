@@ -9,6 +9,23 @@ namespace SomabaySystem.Classes
 {
     internal class FunctionsValidation
     {
+        #region Validation ID
+        public static bool ValidationID(int x)
+        {
+            bool ValidID = false;
+            while (ValidID == false)
+            {
+                Console.Write("Enter ID: ");
+                ValidID = int.TryParse(Console.ReadLine(), out x);
+                if (ValidID)
+                {
+                    ValidID = true;
+                    return true;
+                }
+            }
+            return ValidID;
+        }
+        #endregion
         #region checkinValidation
         public static bool CheckinValid(string date)
         {
