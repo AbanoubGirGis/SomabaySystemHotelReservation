@@ -132,7 +132,7 @@ namespace HostelReservation.Classes
                     reader.Close();
                 }
                 
-                string select = $"select * from Customer where CustomerId = 2";
+                string select = $"select * from Customer where CustomerId = {customer.ID}";
                 using (SqlCommand command1 = new SqlCommand(select, con))
                 {
                     SqlDataReader sqlDataReader = command1.ExecuteReader();

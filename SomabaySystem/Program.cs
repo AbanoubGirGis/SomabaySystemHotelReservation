@@ -19,6 +19,7 @@ namespace HostelReservation
             //example to check date time
             //string str = "17/1/2024";
             //Console.WriteLine(FunctionsValidation.CheckinValid(str));
+            //Console.WriteLine(FunctionsValidation.CheckoutValid(str, "16/1/2024"));
             //Function function = new Function();
             //function.updatecustomer();
         }
