@@ -65,7 +65,7 @@ namespace HostelReservation.Classes
             customer = (Customer)CreateObj;
 
 
-            using (SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
             {
                 con.Open();
 
@@ -121,7 +121,7 @@ namespace HostelReservation.Classes
         {
             Customer customer = new Customer();
             customer = (Customer)UpdateObj;
-            using (SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
             {
                 con.Open();
                 string updateCustomer = $"update Customer set CustomerFullName='{customer.FullName}',CustomerCity='{customer.City}',CustomerPhone='{customer.Phonenumber}' where CustomerId={customer.ID}";

@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using HostelReservation.Classes;
 using SomabaySystem;
+using SomabaySystem.Classes;
 namespace HostelReservation
 {
     internal class Program
@@ -15,7 +16,9 @@ namespace HostelReservation
 
             //Admin admin = new Admin();
             //admin.AdminMethod();
-
+            //example to check date time
+            //string str = "17/1/2024";
+            //Console.WriteLine(FunctionsValidation.CheckinValid(str));
             //Function function = new Function();
             //function.updatecustomer();
         }
