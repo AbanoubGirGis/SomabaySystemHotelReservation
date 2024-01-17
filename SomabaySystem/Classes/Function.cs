@@ -8,10 +8,9 @@ namespace HostelReservation.Classes
 {
     internal class Function
     {
-        //customer functions
         #region customer functions
 
-        public void createcustomer()
+        public void CreateCustomer()
         {
             Customer customer = new Customer();
             Console.Write("Enter Customer Name: ");
@@ -23,12 +22,12 @@ namespace HostelReservation.Classes
             Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
             customer.Create(customer);
         }
-        public void selectcustomer()
+        public void SelectCustomer()
         {
             Customer customer = new Customer();
             customer.Read(customer);
         }
-        public void updatecustomer()
+        public void UpdateCustomer()
         {
             Customer customer = new Customer();
             Console.WriteLine("enter the customer id ");
@@ -41,7 +40,7 @@ namespace HostelReservation.Classes
             customer.Phonenumber = Console.ReadLine();
             customer.Update(customer);
         }
-        public void deletecustomer()
+        public void DeleteCustomer()
         {
             Customer customer = new Customer();
             Console.WriteLine("enter the customer id ");
@@ -136,20 +135,19 @@ namespace HostelReservation.Classes
             hotels.Read(hotels);
         }
 
-        public void updateeHotels()
+        public void UpdateeHotels()
         {
             Hotels H = new Hotels();
             H.Update(H);
         }
 
-        public void deleteeHotels()
+        public void DeleteeHotels()
         {
             Hotels H = new Hotels();
             H.Delete(H);
         }
 
         #endregion
-
 
         #region Reservation Function
 
