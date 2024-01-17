@@ -64,11 +64,13 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("2..Create New Hotel.");
             Console.WriteLine("3..Update Hotel.");
             Console.WriteLine("4..Delete Hotel");
+            Console.WriteLine("5..Back..");
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
             Option hotelOption = (Option)int.Parse(Console.ReadLine());
+            Console.WriteLine("*** -- *** -- ***");
             switch (hotelOption)
             {
                 case Option.Read:
@@ -82,9 +84,18 @@ namespace SomabaySystem.Admin_VS_Receptionist
                 case Option.Update:
                     function.UpdateeHotels();
                     break;
-
+                
                 case Option.Delete:
                     function.DeleteeHotels();
+                    break;
+
+                case Option.Back:
+                    AdminOptions();
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid Option. Try Again");
+                    AdminOptions();
                     break;
             }
         }
@@ -98,11 +109,14 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("2..Create New Room.");
             Console.WriteLine("3..Update Room.");
             Console.WriteLine("4..Delete Room");
+            Console.WriteLine("5..Back..");
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
             Option roomOption = (Option)int.Parse(Console.ReadLine());
+            Console.WriteLine("*** -- *** -- ***");
+
             switch (roomOption)
             {
                 case Option.Read:
@@ -120,6 +134,18 @@ namespace SomabaySystem.Admin_VS_Receptionist
                 case Option.Delete:
                     function.DeleteRoomOpertion();
                     break;
+
+                case Option.Back:
+                    AdminOptions();
+                    Console.WriteLine("*** -- *** -- ***");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid Option. Try Again");
+                    AdminOptions();
+                    Console.WriteLine("*** -- *** -- ***");
+                    break;
+
             }
         }
 
@@ -132,11 +158,13 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("2..Create New Customer.");
             Console.WriteLine("3..Update Customers.");
             Console.WriteLine("4..Delete Customers");
+            Console.WriteLine("5..Back..");
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
             Option CustomerOption = (Option)int.Parse(Console.ReadLine());
+            Console.WriteLine("*** -- *** -- ***");
             switch (CustomerOption)
             {
                 case Option.Read:
@@ -154,6 +182,17 @@ namespace SomabaySystem.Admin_VS_Receptionist
                 case Option.Delete:
                     function.DeleteCustomer();
                     break;
+
+                case Option.Back:
+                    AdminOptions();
+                    Console.WriteLine("*** -- *** -- ***");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid Option. Try Again");
+                    AdminOptions();
+                    Console.WriteLine("*** -- *** -- ***");
+                    break;
             }
         }
 
@@ -166,11 +205,13 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("2..Create New Reservation.");
             Console.WriteLine("3..Update Reservation.");
             Console.WriteLine("4..Delete Reservation");
+            Console.WriteLine("5..Back..");
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
             Option ReservationOption = (Option)int.Parse(Console.ReadLine());
+            Console.WriteLine("*** -- *** -- ***");
             switch (ReservationOption)
             {
                 case Option.Read:
@@ -184,6 +225,17 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
                 case Option.Delete:
                     break;
+
+                case Option.Back:
+                    AdminOptions();
+                    Console.WriteLine("*** -- *** -- ***");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid Option. Try Again");
+                    AdminOptions();
+                    Console.WriteLine("*** -- *** -- ***");
+                    break;
             }
         }
 
@@ -196,11 +248,13 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("2..Create New Billing.");
             Console.WriteLine("3..Update Billings.");
             Console.WriteLine("4..Delete Billings.");
+            Console.WriteLine("5..Back..");
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
             Option BillingOption = (Option)int.Parse(Console.ReadLine());
+            Console.WriteLine("*** -- *** -- ***");
             switch (BillingOption)
             {
                 case Option.Read:
@@ -213,6 +267,17 @@ namespace SomabaySystem.Admin_VS_Receptionist
                     break;
 
                 case Option.Delete:
+                    break;
+
+                case Option.Back:
+                    AdminOptions();
+                    Console.WriteLine("*** -- *** -- ***");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid Option. Try Again");
+                    AdminOptions();
+                    Console.WriteLine("*** -- *** -- ***");
                     break;
             }
         }

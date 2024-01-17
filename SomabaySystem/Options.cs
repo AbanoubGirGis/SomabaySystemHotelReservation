@@ -19,7 +19,8 @@ namespace HostelReservation
         Read = 1,
         Create,
         Update,
-        Delete
+        Delete,
+        Back
     }
  
 }
