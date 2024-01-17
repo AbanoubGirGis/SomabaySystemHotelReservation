@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SomabaySystem.Classes;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +32,7 @@ namespace HostelReservation.Classes
         public void UpdateCustomer()
         {
             Customer customer = new Customer();
-            Console.WriteLine("enter the customer id ");
+            Console.WriteLine("enter the customer Id ");
             customer.ID = int.Parse(Console.ReadLine());
             Console.Write("Enter Customer Name: ");
             customer.FullName = Console.ReadLine();
@@ -138,6 +140,19 @@ namespace HostelReservation.Classes
         public void UpdateeHotels()
         {
             Hotels H = new Hotels();
+            Console.WriteLine("Enter The Hotel Id");
+            H.ID = int.Parse(Console.ReadLine());
+            if (FunctionsValidation.DoesHotelExistValdition(H.ID))
+            {
+                Console.WriteLine("Enter The Hotel name");
+                H.Name = Console.ReadLine();
+                Console.WriteLine("enter the hotel phone");
+                H.PhoneNumber = Console.ReadLine();
+                Console.WriteLine("enter the hotel zipcode");
+                H.ZipCode = int.Parse(Console.ReadLine());
+                H.Update(H);
+            }
+            else { Console.WriteLine("NOT existed"); }
             H.Update(H);
         }
 
@@ -146,6 +161,8 @@ namespace HostelReservation.Classes
             Hotels H = new Hotels();
             H.Delete(H);
         }
+
+       
 
         #endregion
 
