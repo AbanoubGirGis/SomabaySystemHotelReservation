@@ -160,10 +160,16 @@ namespace HostelReservation.Classes
         public void deleteeHotels()
         {
             Hotels H = new Hotels();
-            H.Delete(H);
-        }
+            Console.WriteLine("Enter Hotels ID to delete it: ");
+            H.ID = int.Parse(Console.ReadLine());
+            if (FunctionsValidation.DoesHotelExistValdition(H.ID))
+            {
+                H.Delete(H);
+                Console.WriteLine("Deleted Succefully");
+            }
+            else { Console.WriteLine("NOT existed"); }
 
-       
+        }
 
         #endregion
 
