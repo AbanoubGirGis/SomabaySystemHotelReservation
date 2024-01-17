@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HostelReservation;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace SomabaySystem.Classes
         #region Hotel id validation
         public static bool DoesHotelExistValdition(int pk)
         {
-            string connectionString = "Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
+            string connectionString = Program.PublicConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {

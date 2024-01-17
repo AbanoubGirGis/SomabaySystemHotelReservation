@@ -27,7 +27,7 @@ namespace HostelReservation.Classes
             hotels = (Hotels)CreateObj;
 
 
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
 
@@ -50,7 +50,7 @@ namespace HostelReservation.Classes
             string[] val;
             var table = new ConsoleTable("Hotel ID", "Hotel Name", "Phone Number", "ZipCode");
             string showAllHotels = "select * from Hotel";
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
                 using (SqlCommand command = new SqlCommand(showAllHotels, con))
@@ -79,7 +79,7 @@ namespace HostelReservation.Classes
 
             Hotels hotel = new Hotels();
             hotel = (Hotels)UpdateObj;
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
 
@@ -100,7 +100,7 @@ namespace HostelReservation.Classes
 
             Hotels hotel = new Hotels();
             hotel = (Hotels)DeleteObj;
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
                 string deletehotel = $"delete from Hotel where HotelId={hotel.ID}";

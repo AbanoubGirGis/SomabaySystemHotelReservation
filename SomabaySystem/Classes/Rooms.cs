@@ -64,7 +64,7 @@ namespace HostelReservation.Classes
             rooms.numberBeds = NumberBeds;
             rooms.HotelId = HotelId;
 
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
 
@@ -83,7 +83,7 @@ namespace HostelReservation.Classes
         {
             Rooms rooms = (Rooms)ReadObj;
 
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
 
@@ -122,7 +122,7 @@ namespace HostelReservation.Classes
         {
             Rooms rooms = (Rooms)UpdateObj;
 
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
 
@@ -140,7 +140,7 @@ namespace HostelReservation.Classes
         {
             Rooms rooms = (Rooms)DeleteObj;
 
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
 
