@@ -76,6 +76,7 @@ namespace HostelReservation.Classes
 
         public void Update(object UpdateObj)
         {
+
             Hotels hotel = new Hotels();
             hotel = (Hotels)UpdateObj;
             using (SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=Somabay;Integrated Security=True"))

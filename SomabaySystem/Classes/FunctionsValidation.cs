@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,36 @@ namespace SomabaySystem.Classes
                 return true;
             return false;
         }
+        #endregion
+
+        #region Hotel id validation
+        public static bool DoesHotelExistValdition(int pk)
+        {
+            string connectionString = "Data Source=.;Initial Catalog=Somabay;Integrated Security=True";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "SELECT TOP 1 1 FROM Hotel WHERE HotelId = @HotelId";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@HotelId", pk);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
         #endregion
     }
 }
