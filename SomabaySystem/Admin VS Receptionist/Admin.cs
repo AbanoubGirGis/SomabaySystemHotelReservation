@@ -41,9 +41,11 @@ namespace SomabaySystem.Admin_VS_Receptionist
                     break;
 
                 case AdminOption.Reservation:
+                    ReservationDisplay();
                     break;
 
                 case AdminOption.Billing:
+                    BillingDisplay();
                     break;
 
                 default:
@@ -52,6 +54,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
                     break;
             }
         }
+
         void HotelDisplay()
         {
             Console.WriteLine("Welcome to Hotels: ");
@@ -85,6 +88,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
                     break;
             }
         }
+
         void RoomDisplay()
         {
             Console.WriteLine("Welcome to Rooms: ");
@@ -118,6 +122,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
                     break;
             }
         }
+
         void CustomerDisplay()
         {
             Console.WriteLine("Welcome to Customers: ");
@@ -148,6 +153,66 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
                 case Option.Delete:
                     function.DeleteCustomer();
+                    break;
+            }
+        }
+
+        void ReservationDisplay()
+        {
+            Console.WriteLine("Welcome to Reservations: ");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.WriteLine("1..Show All Reservations.");
+            Console.WriteLine("2..Create New Reservation.");
+            Console.WriteLine("3..Update Reservation.");
+            Console.WriteLine("4..Delete Reservation");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.Write("Your Chooice: ");
+            Function function = new Function();
+            Option ReservationOption = (Option)int.Parse(Console.ReadLine());
+            switch (ReservationOption)
+            {
+                case Option.Read:
+                    break;
+
+                case Option.Create:
+                    break;
+
+                case Option.Update:
+                    break;
+
+                case Option.Delete:
+                    break;
+            }
+        }
+
+        void BillingDisplay()
+        {
+            Console.WriteLine("Welcome to Billing: ");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.WriteLine("1..Show All Billings.");
+            Console.WriteLine("2..Create New Billing.");
+            Console.WriteLine("3..Update Billings.");
+            Console.WriteLine("4..Delete Billings.");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.Write("Your Chooice: ");
+            Function function = new Function();
+            Option BillingOption = (Option)int.Parse(Console.ReadLine());
+            switch (BillingOption)
+            {
+                case Option.Read:
+                    break;
+
+                case Option.Create:
+                    break;
+
+                case Option.Update:
+                    break;
+
+                case Option.Delete:
                     break;
             }
         }
