@@ -153,7 +153,6 @@ namespace HostelReservation.Classes
                 H.Update(H);
             }
             else { Console.WriteLine("NOT existed"); }
-            H.Update(H);
         }
 
         public void DeleteeHotels()

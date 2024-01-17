@@ -39,7 +39,7 @@ namespace SomabaySystem.Classes
         #region Hotel id validation
         public static bool DoesHotelExistValdition(int pk)
         {
-            string connectionString = "Data Source=.;Initial Catalog=Somabay;Integrated Security=True";
+            string connectionString = "Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
