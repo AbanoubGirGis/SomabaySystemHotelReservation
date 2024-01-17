@@ -1,129 +1,155 @@
-﻿using System;
+﻿using HostelReservation;
+using HostelReservation.Classes;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SomabaySystem
+namespace SomabaySystem.Admin_VS_Receptionist
 {
     internal class Admin
     {
-        public void AdminMethod()
+        public void AdminOptions()
         {
-            string Login = "Login...";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (Login.Length / 2)) + "}", Login));
-            Console.WriteLine("\n\n");
+            Console.WriteLine("How can I help you today?");
+            Console.WriteLine();
 
-            Console.Write("\t \t \t \t Enter username:");
-            string username = Console.ReadLine();
-
-            Console.Write("\t \t \t \t Enter password: ");
-            string password = ReadPassword();
-
-            bool isAdmin = CheckCredentials(username, password);
-            bool isReseption = CheckCredentialsToReseption(username, password);
-            if (isAdmin)
+            Console.WriteLine("1..Hotels");
+            Console.WriteLine("2..Rooms");
+            Console.WriteLine("3..Customers");
+            Console.WriteLine("4..Reservations");
+            Console.WriteLine("5..Billing");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.Write("Your Chooice: ");
+            AdminOption adminOption = (AdminOption)int.Parse(Console.ReadLine());
+            Console.WriteLine();
+            Console.WriteLine("*** -- *** -- ***");
+            switch (adminOption)
             {
-                Console.WriteLine("\n\n");
-                string LoginSuccessfully = "Login successful!";
-                Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (LoginSuccessfully.Length / 2)) + "}", LoginSuccessfully));
-                
-                Console.WriteLine("\n");
-                String Welcome = $"Welcome to Somabay System Admin: {username}";
-                Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (Welcome.Length / 2)) + "}", Welcome));
-            }
-            else if (isReseption)
-            {
-                Console.WriteLine("\n\n");
-                string LoginSuccessfully = "Login successful!";
-                Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (LoginSuccessfully.Length / 2)) + "}", LoginSuccessfully));
+                case AdminOption.Hotels:
+                    HotelDisplay();
+                    break;
 
-                Console.WriteLine("\n");
-                String Welcome = $"Welcome to Somabay System Receptionist: {username}";
-                Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (Welcome.Length / 2)) + "}", Welcome));
+                case AdminOption.Rooms:
+                    RoomDisplay();
+                    break;
 
-            }
-            else
-            {
-                Console.WriteLine("\n\n");
-                string faild = "Invalid username or password. Login failed.";
-                Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (faild.Length / 2)) + "}", faild));
+                case AdminOption.Customers:
+                    CustomerDisplay();
+                    break;
+
+                case AdminOption.Reservation:
+                    break;
+
+                case AdminOption.Billing:
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid Option. Try Again");
+                    AdminOptions();
+                    break;
             }
         }
-
-        string ReadPassword()
+        void HotelDisplay()
         {
-            string password = "";
-            ConsoleKeyInfo key;
-
-            do
+            Console.WriteLine("Welcome to Hotels: ");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.WriteLine("1..Show All Hotels.");
+            Console.WriteLine("2..Create New Hotel.");
+            Console.WriteLine("3..Update Hotel.");
+            Console.WriteLine("4..Delete Hotel");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.Write("Your Chooice: ");
+            Function function = new Function();
+            Option hotelOption = (Option)int.Parse(Console.ReadLine());
+            switch (hotelOption)
             {
-                key = Console.ReadKey(true);
+                case Option.Read:
+                    function.SelectHotels();
+                    break;
 
-                if (char.IsControl(key.KeyChar))
-                {
-                    if (key.Key == ConsoleKey.Backspace && password.Length > 0)
-                    {
-                        password = password.Substring(0, password.Length - 1);
-                        Console.Write("\b \b");
-                    }
-                }
-                else
-                {
-                    password += key.KeyChar;
-                    Console.Write("*");
-                }
-            } while (key.Key != ConsoleKey.Enter);
+                case Option.Create:
+                    function.CreateHotels();
+                    break;
 
-            Console.WriteLine(); 
-            return password;
-        }
+                case Option.Update:
+                    function.UpdateeHotels();
+                    break;
 
-        bool CheckCredentials(string username, string password)
-        {
-            int newPass;
-            newPass = Convert.ToInt32(password);
-            string connectionString = "Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                con.Open();
-
-                string query = $"SELECT COUNT(*) FROM Login WHERE Username = @username AND Password = @password and Type = 'Admin'";
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", newPass);
-
-                    int count = (int)cmd.ExecuteScalar();
-
-                    return count > 0;
-                }
+                case Option.Delete:
+                    function.DeleteeHotels();
+                    break;
             }
         }
-
-        bool CheckCredentialsToReseption(string username, string password)
+        void RoomDisplay()
         {
-            int newPass;
-            newPass = Convert.ToInt32(password);
-            string connectionString = "Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
-            using (SqlConnection con = new SqlConnection(connectionString))
+            Console.WriteLine("Welcome to Rooms: ");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.WriteLine("1..Show All Rooms.");
+            Console.WriteLine("2..Create New Room.");
+            Console.WriteLine("3..Update Room.");
+            Console.WriteLine("4..Delete Room");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.Write("Your Chooice: ");
+            Function function = new Function();
+            Option roomOption = (Option)int.Parse(Console.ReadLine());
+            switch (roomOption)
             {
-                con.Open();
+                case Option.Read:
+                    function.ReadroomOperation();
+                    break;
 
-                string query = $"SELECT COUNT(*) FROM Login WHERE Username = @username AND Password = @password and Type = 'reseption'";
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", newPass);
+                case Option.Create:
+                    function.CreateRoomOperation();
+                    break;
 
-                    int count = (int)cmd.ExecuteScalar();
+                case Option.Update:
+                    function.UpdateRoomOperation();
+                    break;
 
-                    return count > 0;
-                }
+                case Option.Delete:
+                    function.DeleteRoomOpertion();
+                    break;
             }
         }
+        void CustomerDisplay()
+        {
+            Console.WriteLine("Welcome to Customers: ");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.WriteLine("1..Show All Customers.");
+            Console.WriteLine("2..Create New Customer.");
+            Console.WriteLine("3..Update Customers.");
+            Console.WriteLine("4..Delete Customers");
+            Console.WriteLine("*** -- *** -- ***");
+            Console.WriteLine();
+            Console.Write("Your Chooice: ");
+            Function function = new Function();
+            Option CustomerOption = (Option)int.Parse(Console.ReadLine());
+            switch (CustomerOption)
+            {
+                case Option.Read:
+                    function.SelectCustomer();
+                    break;
 
+                case Option.Create:
+                    function.CreateCustomer();
+                    break;
+
+                case Option.Update:
+                    function.UpdateCustomer();
+                    break;
+
+                case Option.Delete:
+                    function.DeleteCustomer();
+                    break;
+            }
+        }
     }
-    
 }

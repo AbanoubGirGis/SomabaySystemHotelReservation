@@ -65,7 +65,7 @@ namespace HostelReservation.Classes
             customer = (Customer)CreateObj;
 
 
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
             {
                 con.Open();
 
@@ -85,7 +85,7 @@ namespace HostelReservation.Classes
 
         public void Read(object ReadObj)
         {
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
             {
                 con.Open();
                 string selectCustoers = "select *from Customer";
@@ -121,7 +121,7 @@ namespace HostelReservation.Classes
         {
             Customer customer = new Customer();
             customer = (Customer)UpdateObj;
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
             {
                 con.Open();
                 string updateCustomer = $"update Customer set CustomerFullName='{customer.FullName}',CustomerCity='{customer.City}',CustomerPhone='{customer.Phonenumber}' where CustomerId={customer.ID}";
@@ -161,7 +161,7 @@ namespace HostelReservation.Classes
         {
             Customer customer = new Customer();
             customer = (Customer)DeleteObj;
-            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"))
             {
                 con.Open();
                 string deleteCustomer = $"delete from Customer where CustomerId={customer.ID}";
