@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SomabaySystem.Classes;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,10 +10,9 @@ namespace HostelReservation.Classes
 {
     internal class Function
     {
-        //customer functions
         #region customer functions
 
-        public Customer createcustomer()
+        public void CreateCustomer()
         {
             Customer customer = new Customer();
             Console.Write("Enter Customer Name: ");
@@ -23,7 +23,31 @@ namespace HostelReservation.Classes
             customer.Phonenumber = Console.ReadLine();
             Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
             customer.Create(customer);
-            return customer;
+        }
+        public void SelectCustomer()
+        {
+            Customer customer = new Customer();
+            customer.Read(customer);
+        }
+        public void UpdateCustomer()
+        {
+            Customer customer = new Customer();
+            Console.WriteLine("enter the customer Id ");
+            customer.ID = int.Parse(Console.ReadLine());
+            Console.Write("Enter Customer Name: ");
+            customer.FullName = Console.ReadLine();
+            Console.Write("Enter Customer City: ");
+            customer.City = Console.ReadLine();
+            Console.Write("Enter Customer Phone Number: ");
+            customer.Phonenumber = Console.ReadLine();
+            customer.Update(customer);
+        }
+        public void DeleteCustomer()
+        {
+            Customer customer = new Customer();
+            Console.WriteLine("enter the customer id ");
+            customer.ID = int.Parse(Console.ReadLine());
+            customer.Delete(customer);
         }
 
 
@@ -112,23 +136,10 @@ namespace HostelReservation.Classes
             hotels.Read(hotels);
         }
 
-        public void updateeHotels()
+        public void UpdateeHotels()
         {
             Hotels H = new Hotels();
-            Console.WriteLine("enter the hotel id");
-            H.ID = int.Parse(Console.ReadLine());
-            if (DoesHotelExist(H.ID))
-            {
-                Console.WriteLine("enter the hotel name");
-                H.Name = Console.ReadLine();
-                Console.WriteLine("enter the hotel phone");
-                H.PhoneNumber = Console.ReadLine();
-                Console.WriteLine("enter the hotel zipcode");
-                H.ZipCode = int.Parse(Console.ReadLine());
-                H.Update(H);
-            }
-            else { Console.WriteLine("NOT existed"); }
-            
+            H.Update(H);
         }
 
         public void deleteeHotels()
@@ -136,39 +147,18 @@ namespace HostelReservation.Classes
             Hotels H = new Hotels();
             Console.WriteLine("Enter Hotels ID to delete it: ");
             H.ID = int.Parse(Console.ReadLine());
-            if (DoesHotelExist(H.ID))
+            if (FunctionsValidation.DoesHotelExistValdition(H.ID))
             {
                 H.Delete(H);
+                Console.WriteLine("Deleted Succefully");
             }
             else { Console.WriteLine("NOT existed"); }
-           
+
         }
-        static public bool DoesHotelExist(int pk)
-        {
-            string connectionString = "Data Source=.;Initial Catalog=Somabay;Integrated Security=True";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
+        #endregion
 
-                string sql = "SELECT TOP 1 1 FROM Hotel WHERE HotelId = @HotelId";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@HotelId", pk);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            return false;
-        }
+        #region Reservation Function
 
         #endregion
     }

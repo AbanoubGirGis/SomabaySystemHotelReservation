@@ -23,7 +23,7 @@ namespace HostelReservation.Classes
             reservation = (Reservation)obj;
 
             Reservation re = new Reservation();
-            using (SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=Somabay;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(Program.PublicConnectionString))
             {
 
                 bool isConnectionOpen = (connection.State == System.Data.ConnectionState.Open);
@@ -45,6 +45,7 @@ namespace HostelReservation.Classes
                     command.ExecuteNonQuery();
                 }
             }
+            //
         }
 
         public void Delete(object DeleteObj)
