@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,8 +95,7 @@ namespace HostelReservation.Classes
         public void CreateHotels()
         {
             Hotels h = new Hotels();
-            Console.Write("Enter Hotels ID: ");
-            h.ID = int.Parse(Console.ReadLine());
+           
             Console.Write("Enter Hotel Name: ");
             h.Name = Console.ReadLine();
             Console.Write("Enter ZipCode of hotels : ");
@@ -115,13 +115,59 @@ namespace HostelReservation.Classes
         public void updateeHotels()
         {
             Hotels H = new Hotels();
-            H.Update(H);
+            Console.WriteLine("enter the hotel id");
+            H.ID = int.Parse(Console.ReadLine());
+            if (DoesHotelExist(H.ID))
+            {
+                Console.WriteLine("enter the hotel name");
+                H.Name = Console.ReadLine();
+                Console.WriteLine("enter the hotel phone");
+                H.PhoneNumber = Console.ReadLine();
+                Console.WriteLine("enter the hotel zipcode");
+                H.ZipCode = int.Parse(Console.ReadLine());
+                H.Update(H);
+            }
+            else { Console.WriteLine("NOT existed"); }
+            
         }
 
         public void deleteeHotels()
         {
             Hotels H = new Hotels();
-            H.Delete(H);
+            Console.WriteLine("Enter Hotels ID to delete it: ");
+            H.ID = int.Parse(Console.ReadLine());
+            if (DoesHotelExist(H.ID))
+            {
+                H.Delete(H);
+            }
+            else { Console.WriteLine("NOT existed"); }
+           
+        }
+        static public bool DoesHotelExist(int pk)
+        {
+            string connectionString = "Data Source=.;Initial Catalog=Somabay;Integrated Security=True";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "SELECT TOP 1 1 FROM Hotel WHERE HotelId = @HotelId";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@HotelId", pk);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         #endregion
