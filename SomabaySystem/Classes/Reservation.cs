@@ -45,6 +45,7 @@ namespace HostelReservation.Classes
                     command.ExecuteNonQuery();
                 }
             }
+            //
         }
 
         public void Delete(object DeleteObj)

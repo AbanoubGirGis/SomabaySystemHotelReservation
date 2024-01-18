@@ -9,7 +9,7 @@ namespace HostelReservation
     {
         // Connection Abanoub Server//"Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"   محدش يلعب فيه
        
-        public static readonly string PublicConnectionString = "Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
+        public static readonly string PublicConnectionString = "Data Source=.;Initial Catalog=Somabay;Integrated Security=True";
         static void Main(string[] args)
         {
             Console.WriteLine("\n\n");

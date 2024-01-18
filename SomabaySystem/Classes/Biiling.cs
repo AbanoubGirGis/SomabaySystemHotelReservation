@@ -5,79 +5,78 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.SqlClient;
 namespace HostelReservation.Classes
 {
-    internal class Billing
+    class Bill
     {
-        #region Fields Of billing
-        private int billingid;
-        private decimal roomcharge;
-        private decimal miscCharges;
-        private int creditcardno;
-        private char paymentdate;
-        private int customerid;
-        #endregion
+        public int BillingId { get; set; }
+        public int CustomerId { get; set; }
+        public int DaysNumber { get; set; }
+        public decimal RoomCharge { get; set; }
+        public decimal Deposit { get; set; }
 
-        #region Properties Of billing
-        //public int Billingid
-        //{
-        //    get { return billingid; }
-        //    set { billingid = value; }
-        //}
+        public Bill(int billingId, int customerId, int daysNumber, decimal roomCharge, decimal deposit)
+        {
+            BillingId = billingId;
+            CustomerId = customerId;
+            DaysNumber = daysNumber;
+            RoomCharge = roomCharge;
+            Deposit = deposit;
+        }
+        public void Create()
+        {
+            string connectionString = "Data Source=.;Initial Catalog=Somabay;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "INSERT INTO Bill (CustomerId, DaysNumber, RoomCharge, Deposit) VALUES (@CustomerId, @DaysNumber, @RoomCharge, @Deposit)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CustomerId", CustomerId);
+                    command.Parameters.AddWithValue("@DaysNumber", DaysNumber);
+                    command.Parameters.AddWithValue("@RoomCharge", RoomCharge);
+                    command.Parameters.AddWithValue("@Deposit", Deposit);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
-        //public decimal Roomcharge
-        //{
-        //    get { return roomcharge; }
-        //    set { roomcharge = value; }
-        //}
 
-        //public decimal MiscCharge
-        //{
-        //    get { return miscCharges; }
-        //    set
-        //    {
-        //        if (value > 0)
-        //            miscCharges = value;
-        //        else
-        //            Console.WriteLine("Can not put Rates less than 0 ");
-        //    }
-        //}
-        //public int Creditcardno
-        //{
-        //    get { return creditcardno; }
-        //    set { creditcardno = value; }
-        //}
-        //public int paymentdate
-        //{
-        //    get { return paymentdate; }
-        //    set
-        //    {
-        //        if (value > 0)
-        //            paymentdate = value;
-        //        else
-        //            Console.WriteLine("Can not put Number less than 0 ");
-        //    }
+        public void UpdateBill()
+        {
+            string connectionString = "Data Source=.;Initial Catalog=Somabay;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Bill SET CustomerId = @CustomerId, DaysNumber = @DaysNumber, RoomCharge = @RoomCharge, Deposit = @Deposit WHERE BillingId = @BillingId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@BillingId", BillingId);
+                    command.Parameters.AddWithValue("@CustomerId", CustomerId);
+                    command.Parameters.AddWithValue("@DaysNumber", DaysNumber);
+                    command.Parameters.AddWithValue("@RoomCharge", RoomCharge);
+                    command.Parameters.AddWithValue("@Deposit", Deposit);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
-        #endregion
 
-        #region Methods Of billing
-        // public void billingData()
-        //{
-        //    Console.Write("Enter billing id: ");
-        //    Billingid = int.Parse(Console.ReadLine());
-        //    Console.Write("Enter room charge: ");
-        //    roomcharge = Console.ReadLine();
-        //    Console.Write("Enter misc charge: ");
-        //    MiscCharges = decimal.Parse(Console.ReadLine());
-        //    Console.Write("Enter credit card no: ");
-        //    creditcardno = int.Parse(Console.ReadLine());
-        //    Console.Write("Enter payment date: ");
-        //    paymentdate = int.Parse(Console.ReadLine());
-        //    Console.Write("Enter Customer ID ");
-        //    CustomerID = int.Parse(Console.ReadLine());
-        //}
-        #endregion
+        public void DeleteBill()
+        {
+            string connectionString = "Data Source=.;Initial Catalog=Somabay;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM Bill WHERE BillingId = @BillingId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@BillingId", BillingId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 
 }
