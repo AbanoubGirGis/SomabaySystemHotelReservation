@@ -7,16 +7,16 @@ namespace HostelReservation.Classes
     {
         #region Fields
         private static int HotelId;
-        private static string HotelName;
-        private static string HotelPhone;
+        private static string? HotelName;
+        private static string? HotelPhone;
         private static int HotelZipCode;
         #endregion
 
         #region Property of Hotel
         public int ID { get { return HotelId; } set { HotelId = value; } }
-        public string Name { get { return HotelName; } set { HotelName = value; } }
+        public string Name { get { return HotelName!; } set { HotelName = value; } }
         public int ZipCode { get { return HotelZipCode; } set { HotelZipCode = value; } }
-        public string PhoneNumber { get { return HotelPhone; } set { HotelPhone = value; } }
+        public string PhoneNumber { get { return HotelPhone!; } set { HotelPhone = value; } }
         #endregion
 
 

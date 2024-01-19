@@ -23,7 +23,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
-            AdminOption adminOption = (AdminOption)int.Parse(Console.ReadLine());
+            AdminOption adminOption = (AdminOption)int.Parse(Console.ReadLine()!);
             Console.WriteLine();
             Console.WriteLine("*** -- *** -- ***");
             switch (adminOption)
@@ -69,7 +69,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option hotelOption = (Option)int.Parse(Console.ReadLine());
+            Option hotelOption = (Option)int.Parse(Console.ReadLine()!);
             Console.WriteLine("*** -- *** -- ***");
             switch (hotelOption)
             {
@@ -114,7 +114,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option roomOption = (Option)int.Parse(Console.ReadLine());
+            Option roomOption = (Option)int.Parse(Console.ReadLine()!);
             Console.WriteLine("*** -- *** -- ***");
 
             switch (roomOption)
@@ -163,7 +163,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option CustomerOption = (Option)int.Parse(Console.ReadLine());
+            Option CustomerOption = (Option)int.Parse(Console.ReadLine()!);
             Console.WriteLine("*** -- *** -- ***");
             switch (CustomerOption)
             {
@@ -210,7 +210,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option ReservationOption = (Option)int.Parse(Console.ReadLine());
+            Option ReservationOption = (Option)int.Parse(Console.ReadLine()!);
             Console.WriteLine("*** -- *** -- ***");
             switch (ReservationOption)
             {
@@ -253,7 +253,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option BillingOption = (Option)int.Parse(Console.ReadLine());
+            Option BillingOption = (Option)int.Parse(Console.ReadLine()!);
             Console.WriteLine("*** -- *** -- ***");
             switch (BillingOption)
             {
