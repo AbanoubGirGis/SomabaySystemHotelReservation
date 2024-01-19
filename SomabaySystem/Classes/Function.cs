@@ -139,7 +139,22 @@ namespace HostelReservation.Classes
         public void UpdateeHotels()
         {
             Hotels H = new Hotels();
-            H.Update(H);
+            Console.WriteLine("Enter The Hotel Id");
+            H.ID = FunctionsValidation.ValidationID();
+
+            if (FunctionsValidation.DoesHotelExistValdition(H.ID))
+            {
+                Console.WriteLine("Enter The Hotel name");
+                H.Name = Console.ReadLine();
+                Console.WriteLine("enter the hotel phone");
+                H.PhoneNumber = Console.ReadLine();
+                Console.WriteLine("enter the hotel zipcode");
+                H.ZipCode = int.Parse(Console.ReadLine());
+                H.Update(H);
+            }
+            else { Console.WriteLine("NOT existed"); }
+
+
         }
 
         public void deleteeHotels()
