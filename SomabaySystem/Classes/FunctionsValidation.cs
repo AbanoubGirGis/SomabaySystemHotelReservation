@@ -11,20 +11,17 @@ namespace SomabaySystem.Classes
     internal class FunctionsValidation
     {
         #region Validation ID
-        public static bool ValidationID(int x)
+        public static int ValidationID() // no int x
         {
             bool ValidID = false;
+            int x=0;
             while (ValidID == false)
             {
-                Console.Write("Enter ID: ");
+                
                 ValidID = int.TryParse(Console.ReadLine(), out x);
-                if (ValidID)
-                {
-                    ValidID = true;
-                    return true;
-                }
+
             }
-            return ValidID;
+            return x;
         }
         #endregion
         #region checkinValidation
@@ -82,6 +79,26 @@ namespace SomabaySystem.Classes
             return false;
         }
 
+        #endregion
+
+        #region validation the number 
+        public static string GetNumericInput(string prompt)
+        {
+            string? userInput;
+
+            do
+            {
+                Console.Write(prompt);
+                userInput = Console.ReadLine();
+            } while (!IsNumeric(userInput));
+
+            return userInput;
+        }
+
+        public static bool IsNumeric(string input)
+        {
+            return int.TryParse(input, out _);
+        }
         #endregion
     }
 }

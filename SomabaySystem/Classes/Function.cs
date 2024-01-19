@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HostelReservation.Classes
 {
-    internal class Function
+    public class Function
     {
         #region customer functions
 
@@ -142,7 +143,7 @@ namespace HostelReservation.Classes
             Hotels H = new Hotels();
             Console.WriteLine("Enter The Hotel Id");
 
-            FunctionsValidation.ValidationID(H.ID);
+            FunctionsValidation.ValidationID();
             if (FunctionsValidation.DoesHotelExistValdition(H.ID))
             {
                 Console.WriteLine("Enter The Hotel name");
@@ -173,7 +174,65 @@ namespace HostelReservation.Classes
         #endregion
 
         #region Reservation Function
+        public  static void createReservation() 
+        {
+            Reservation R = new Reservation();
+            Console.Write("Enter ID: ");
+             R.RoomID= FunctionsValidation.ValidationID();
+            Console.Write("Enter Customer Id ");
+            R.CustomerID = FunctionsValidation.ValidationID();
+            Console.Write("Enter CheckIn ");
+            string checkIn = Console.ReadLine();
+            FunctionsValidation.CheckinValid(checkIn);
+            if (DateTime.TryParse(checkIn, out DateTime dateValue))
+            R.ReservationCheckIn = dateValue;
+            Console.Write("Enter CheckOut ");
+            string checkOut = Console.ReadLine();
+            FunctionsValidation.CheckoutValid(checkIn, checkOut);
+            if (DateTime.TryParse(checkIn, out DateTime dateValue1))
+            R.ReservationCheckOut = dateValue1;
+            R.Create(R);
+            Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
+        }
+        
 
+        public   static void SelectReservation() //select all data from reservation and customer name 
+        {
+            Reservation  Res = new Reservation();
+            Res.Read(Res);
+        } 
+
+
+        public static void SelectResverationId()  //this function to get data for reservation for specicific  customer id 
+        {
+            Reservation re= new Reservation();  
+            Console.WriteLine("Enter the customer id ");
+            int id = int.Parse(Console.ReadLine());
+            re.ReadId(id);
+        }
+
+        public static void UpdateReservation()
+        {
+            Reservation R = new Reservation();
+            Console.WriteLine("Enter The reservation Id");
+            R.ReservationId = int.Parse(Console.ReadLine());
+            FunctionsValidation.ValidationID(R.ReservationId);
+            Console.WriteLine("Enter The roome Id ");
+            R.RoomID = int.Parse(Console.ReadLine());
+            FunctionsValidation.ValidationID(R.RoomID);
+            Console.WriteLine("Enter check in ");
+            string? s = Console.ReadLine();
+
+
+            Console.WriteLine("Enter The check out");
+            string checkout = Console.ReadLine();
+            FunctionsValidation.CheckinValid(time);
+            Console.WriteLine("enter the hotel phone");
+            R.CustomerID = int.Parse(Console.ReadLine());
+            Console.WriteLine("enter the hotel zipcode");
+            H.ZipCode = int.Parse(Console.ReadLine());
+
+        }
         #endregion
     }
 }
