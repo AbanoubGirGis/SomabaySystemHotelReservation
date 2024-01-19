@@ -17,11 +17,11 @@ namespace HostelReservation.Classes
         {
             Customer customer = new Customer();
             Console.Write("Enter Customer Name: ");
-            customer.FullName = Console.ReadLine();
+            customer.FullName = Console.ReadLine()!;
             Console.Write("Enter Customer City: ");
-            customer.City = Console.ReadLine();
+            customer.City = Console.ReadLine()!;
             Console.Write("Enter Customer Phone Number: ");
-            customer.Phonenumber = Console.ReadLine();
+            customer.Phonenumber = Console.ReadLine()!;
             Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
             customer.Create(customer);
         }
@@ -34,20 +34,20 @@ namespace HostelReservation.Classes
         {
             Customer customer = new Customer();
             Console.WriteLine("enter the customer Id ");
-            customer.ID = int.Parse(Console.ReadLine());
+            customer.ID = int.Parse(Console.ReadLine()!);
             Console.Write("Enter Customer Name: ");
-            customer.FullName = Console.ReadLine();
+            customer.FullName = Console.ReadLine()!;
             Console.Write("Enter Customer City: ");
-            customer.City = Console.ReadLine();
+            customer.City = Console.ReadLine()!;
             Console.Write("Enter Customer Phone Number: ");
-            customer.Phonenumber = Console.ReadLine();
+            customer.Phonenumber = Console.ReadLine()!;
             customer.Update(customer);
         }
         public void DeleteCustomer()
         {
             Customer customer = new Customer();
             Console.WriteLine("enter the customer id ");
-            customer.ID = int.Parse(Console.ReadLine());
+            customer.ID = int.Parse(Console.ReadLine()!);
             customer.Delete(customer);
         }
 
@@ -59,13 +59,13 @@ namespace HostelReservation.Classes
         {
             Rooms rooms = new Rooms();
             Console.Write("Enter Number Of Beds: ");
-            rooms.NumberBeds = int.Parse(Console.ReadLine());
+            rooms.NumberBeds = int.Parse(Console.ReadLine()!);
 
             Console.Write("Enter Rates Of Room: ");
-            rooms.RatesRooms = decimal.Parse(Console.ReadLine());
+            rooms.RatesRooms = decimal.Parse(Console.ReadLine()!);
 
             Console.Write("Enter Number Of Hotel: ");
-            rooms.HotelId = int.Parse(Console.ReadLine());
+            rooms.HotelId = int.Parse(Console.ReadLine()!);
             //if (!DBconnection.CheckPkExists(rooms.HotelId))
             //    Console.WriteLine("Incorect Hotel Id");
 
@@ -77,7 +77,7 @@ namespace HostelReservation.Classes
         {
             Rooms room = new Rooms();
             Console.Write("Enter Hotel Number: ");
-            room.HotelId = int.Parse(Console.ReadLine());
+            room.HotelId = int.Parse(Console.ReadLine()!);
             room.Read(room);
         }
 
@@ -85,9 +85,9 @@ namespace HostelReservation.Classes
         {
             Rooms room = new Rooms();
             Console.Write("Enter Hotel Number: ");
-            room.HotelId = int.Parse(Console.ReadLine());
+            room.HotelId = int.Parse(Console.ReadLine()!);
             Console.Write("Enter Room Number: ");
-            room.RoomId = int.Parse(Console.ReadLine());
+            room.RoomId = int.Parse(Console.ReadLine()!);
             room.Delete(room);
         }
 
@@ -95,7 +95,7 @@ namespace HostelReservation.Classes
         {
             Rooms room = new Rooms();
             Console.Write("Enter Room Number: ");
-            room.RoomId = int.Parse(Console.ReadLine());
+            room.RoomId = int.Parse(Console.ReadLine()!);
             //if (DBconnection.CheckPkRoomExists(room.RoomId))
             //{
             //    Console.Write("Enter Number Of Beds: ");
@@ -120,14 +120,13 @@ namespace HostelReservation.Classes
         public void CreateHotels()
         {
             Hotels h = new Hotels();
-            Console.Write("Enter Hotels ID: ");
-            h.ID = int.Parse(Console.ReadLine());
+           
             Console.Write("Enter Hotel Name: ");
-            h.Name = Console.ReadLine();
+            h.Name = Console.ReadLine()!;
             Console.Write("Enter ZipCode of hotels : ");
-            h.ZipCode = int.Parse(Console.ReadLine());
+            h.ZipCode = int.Parse(Console.ReadLine()!);
             Console.Write("Enter Phone Number: ");
-            h.PhoneNumber = Console.ReadLine();
+            h.PhoneNumber = Console.ReadLine()!;
             Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
             h.Create(h);
         }
@@ -142,26 +141,29 @@ namespace HostelReservation.Classes
         {
             Hotels H = new Hotels();
             Console.WriteLine("Enter The Hotel Id");
+            H.ID = FunctionsValidation.ValidationID();
 
             FunctionsValidation.ValidationID();
             if (FunctionsValidation.DoesHotelExistValdition(H.ID))
             {
                 Console.WriteLine("Enter The Hotel name");
-                H.Name = Console.ReadLine();
+                H.Name = Console.ReadLine()!;
                 Console.WriteLine("enter the hotel phone");
-                H.PhoneNumber = Console.ReadLine();
+                H.PhoneNumber = Console.ReadLine()!;
                 Console.WriteLine("enter the hotel zipcode");
-                H.ZipCode = int.Parse(Console.ReadLine());
+                H.ZipCode = int.Parse(Console.ReadLine()!);
                 H.Update(H);
             }
             else { Console.WriteLine("NOT existed"); }
+
+
         }
 
-        public void DeleteeHotels()
+        public void deleteeHotels()
         {
             Hotels H = new Hotels();
             Console.WriteLine("Enter Hotels ID to delete it: ");
-            H.ID = int.Parse(Console.ReadLine());
+            H.ID = int.Parse(Console.ReadLine()!);
             if (FunctionsValidation.DoesHotelExistValdition(H.ID))
             {
                 H.Delete(H);

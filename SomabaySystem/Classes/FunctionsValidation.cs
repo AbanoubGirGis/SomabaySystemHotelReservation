@@ -11,17 +11,20 @@ namespace SomabaySystem.Classes
     internal class FunctionsValidation
     {
         #region Validation ID
-        public static int ValidationID() // no int x
+        public static int ValidationID()
         {
             bool ValidID = false;
-            int x=0;
             while (ValidID == false)
             {
-                
+                Console.Write("Enter ID: ");
                 ValidID = int.TryParse(Console.ReadLine(), out x);
-
+                if (ValidID)
+                {
+                    ValidID = true;
+                    return true;
+                }
             }
-            return x;
+            return ValidID;
         }
         #endregion
         #region checkinValidation

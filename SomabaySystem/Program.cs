@@ -7,6 +7,7 @@ namespace HostelReservation
 {
     internal class Program
     {
+        // هتشتغل هنا علي ده عشان متوهش 
         // Connection Abanoub Server//"Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"   محدش يلعب فيه
        
         public static readonly string PublicConnectionString = "Data Source=.;Initial Catalog=Somabay;Integrated Security=True";
@@ -19,10 +20,7 @@ namespace HostelReservation
 
             Welcome welcome = new Welcome();
             welcome.WelcomeMethod();
-
             
-
-
 
         }
     }

@@ -57,6 +57,7 @@ namespace HostelReservation.Classes
                     command.ExecuteNonQuery();
                 }
             }
+            //
         }
 
         public void Read(object obj) {
