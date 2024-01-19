@@ -19,7 +19,7 @@ namespace SomabaySystem.Classes
             while (!validID)
             {
 
-                string userInput = Console.ReadLine();
+                string? userInput = Console.ReadLine();
 
                 if (int.TryParse(userInput, out int parsedValue))
                 {
