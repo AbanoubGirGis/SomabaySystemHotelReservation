@@ -85,6 +85,8 @@ namespace HostelReservation.Classes
 
         public void Read(object ReadObj)
         {
+            string[] val;
+            var table = new ConsoleTable("Customer ID", "Customer Name","City" ,"Phone Number");
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
@@ -96,15 +98,13 @@ namespace HostelReservation.Classes
                     {
                         while (reader.Read())
                         {
-                            int customerid = reader.GetInt32(0);
-                            string fullname = reader.GetString(1);
-                            string city = reader.GetString(2);
-                            string phonenumber = reader.GetString(3);
-                            Console.WriteLine($"the customer id is {customerid}" +
-                                $" ,Name = {fullname} ," +
-                                $" city = {city} ," +
-                                $"phone number = {phonenumber}");
+                            val = new string[reader.FieldCount];
+                            for (int i = 0; i < reader.FieldCount; i++)
+                                val[i] = Convert.ToString(reader.GetValue(i));
+                            table.AddRow(val[0], val[1], val[2], val[3]);
                         }
+                        table.Write();
+                        Console.WriteLine();
                     }
                     else { Console.WriteLine("NO rows existed"); }
                 }
@@ -119,6 +119,8 @@ namespace HostelReservation.Classes
 
         public void Update(object UpdateObj)
         {
+            string[] val;
+            var table = new ConsoleTable("Customer ID", "Customer Name", "City", "Phone Number");
             Customer customer = new Customer();
             customer = (Customer)UpdateObj;
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
@@ -138,16 +140,14 @@ namespace HostelReservation.Classes
                     SqlDataReader sqlDataReader = command1.ExecuteReader();
                     if (sqlDataReader.HasRows) { 
                         while (sqlDataReader.Read())
-                    {
-                        int customerid = sqlDataReader.GetInt32(0);
-                        string fullname = sqlDataReader.GetString(1);
-                        string city = sqlDataReader.GetString(2);
-                        string phonenumber = sqlDataReader.GetString(3);
-                        Console.WriteLine($"the customer id is {customerid}" +
-                            $" ,Name = {fullname} ," +
-                            $" city = {city} ," +
-                            $"phone number = {phonenumber}");
-                    }
+                        {
+                            val = new string[sqlDataReader.FieldCount];
+                            for (int i = 0; i < sqlDataReader.FieldCount; i++)
+                                val[i] = Convert.ToString(sqlDataReader.GetValue(i));
+                            table.AddRow(val[0], val[1], val[2], val[3]);
+                        }
+                        table.Write();
+                        Console.WriteLine();
                     }
                     else { Console.WriteLine("not updated"); }
                 }

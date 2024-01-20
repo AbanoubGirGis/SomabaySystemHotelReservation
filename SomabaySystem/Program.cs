@@ -7,9 +7,10 @@ namespace HostelReservation
 {
     internal class Program
     {
+        // هتشتغل هنا علي ده عشان متوهش 
         // Connection Abanoub Server//"Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"   محدش يلعب فيه
-       
-        public static readonly string PublicConnectionString = "Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
+        //Connection Marwan Server//"Data Source=DESKTOP-VD76OGN\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True"
+        public static readonly string PublicConnectionString = "Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
         static void Main(string[] args)
         {
             Console.WriteLine("\n\n");

@@ -92,7 +92,7 @@ namespace HostelReservation.Classes
                 var table = new ConsoleTable("RoomNumber", "Number Of Beds", "Rates", "Hotel Name");
 
                 string showAllRooms = $"Select r.RoomID,r.RoomBedsNumber,r.RoomMoney ,h.HotelName " +
-                    $"from Room r ,Hotel h  where h.HotelId = r.HotelID and RoomStatus = 'A'  and r.HotelID =" + rooms.hotelId;
+                    $"from Room r ,Hotel h  where h.HotelId = r.HotelID and RoomStatus = 'F'  and r.HotelID =" + rooms.hotelId;
 
                 using (SqlCommand command = new SqlCommand(showAllRooms, con))
                 {

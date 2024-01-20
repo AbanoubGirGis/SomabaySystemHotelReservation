@@ -48,7 +48,8 @@ namespace SomabaySystem
                 Console.WriteLine("\n");
                 String Welcome = $"Welcome to Somabay System Receptionist: {username}";
                 Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (Welcome.Length / 2)) + "}", Welcome));
-
+                Reseption reseption = new Reseption();
+                reseption.ReseptionOptions();
             }
             else
             {
