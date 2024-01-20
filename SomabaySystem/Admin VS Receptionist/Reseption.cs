@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HostelReservation;
+using HostelReservation.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,51 @@ namespace SomabaySystem.Admin_VS_Receptionist
 {
     internal class Reseption
     {
+        Hotels hotel=new Hotels();
+        Rooms room=new Rooms();
+        Customer customer=new Customer();
+        Reservation reservation=new Reservation();
+        Function function=new Function();
+        public void ReseptionOptions()
+        {
+
+            
+            Console.WriteLine("How can I help you today?");
+            Console.WriteLine(" 1 checkin \n 2 checkout");
+            int choice=int.Parse(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:Checkin(); ReseptionOptions(); break;
+               // case 2:Checkout(); ReseptionOptions(); break;
+            }
+
+        }
+        public void Checkin()
+        {
+            function.SelectHotels();
+            function.ReadroomOperation();
+            room=function.UpdateRoomOperation();
+            function.SelectCustomer();
+            //customer= function.CreateCustomer();
+            //  reservation = function.Createresvation();  not make yet
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

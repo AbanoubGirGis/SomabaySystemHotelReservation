@@ -20,10 +20,11 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("3..Customers");
             Console.WriteLine("4..Reservations");
             Console.WriteLine("5..Billing");
+            Console.WriteLine("6..Exit");
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
-            AdminOption adminOption = (AdminOption)int.Parse(Console.ReadLine()!);
+            AdminOption adminOption = (AdminOption)int.Parse(Console.ReadLine());
             Console.WriteLine();
             Console.WriteLine("*** -- *** -- ***");
             switch (adminOption)
@@ -48,6 +49,12 @@ namespace SomabaySystem.Admin_VS_Receptionist
                     BillingDisplay();
                     break;
 
+                case AdminOption.Exit:
+                    Console.Clear();
+                    Welcome welcome = new Welcome();
+                    welcome.WelcomeMethod();
+                    break;
+
                 default:
                     Console.WriteLine("Invalid Option. Try Again");
                     AdminOptions();
@@ -57,8 +64,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void HotelDisplay()
         {
-            string textToEnter = "*** -- Welcome to Hotels -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Hotels: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Hotels.");
             Console.WriteLine("2..Create New Hotel.");
@@ -69,24 +76,32 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option hotelOption = (Option)int.Parse(Console.ReadLine()!);
+            Option hotelOption = (Option)int.Parse(Console.ReadLine());
             Console.WriteLine("*** -- *** -- ***");
             switch (hotelOption)
             {
                 case Option.Read:
                     function.SelectHotels();
+                    Console.WriteLine("\n");
+                    HotelDisplay();
                     break;
 
                 case Option.Create:
                     function.CreateHotels();
+                    Console.WriteLine("\n");
+                    HotelDisplay();
                     break;
 
                 case Option.Update:
                     function.UpdateeHotels();
+                    Console.WriteLine("\n");
+                    HotelDisplay();
                     break;
-                
+
                 case Option.Delete:
-                    function.deleteeHotels();
+                    function.DeleteeHotels();
+                    Console.WriteLine("\n");
+                    HotelDisplay();
                     break;
 
                 case Option.Back:
@@ -102,8 +117,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void RoomDisplay()
         {
-            string textToEnter = "*** -- Welcome to Rooms -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Rooms: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Rooms.");
             Console.WriteLine("2..Create New Room.");
@@ -114,7 +129,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option roomOption = (Option)int.Parse(Console.ReadLine()!);
+            Option roomOption = (Option)int.Parse(Console.ReadLine());
             Console.WriteLine("*** -- *** -- ***");
 
             switch (roomOption)
@@ -151,8 +166,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void CustomerDisplay()
         {
-            string textToEnter = "*** -- Welcome to Customer -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Customers: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Customers.");
             Console.WriteLine("2..Create New Customer.");
@@ -163,7 +178,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option CustomerOption = (Option)int.Parse(Console.ReadLine()!);
+            Option CustomerOption = (Option)int.Parse(Console.ReadLine());
             Console.WriteLine("*** -- *** -- ***");
             switch (CustomerOption)
             {
@@ -198,8 +213,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void ReservationDisplay()
         {
-            string textToEnter = "*** -- Welcome to Reservation -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Reservations: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Reservations.");
             Console.WriteLine("2..Create New Reservation.");
@@ -210,7 +225,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option ReservationOption = (Option)int.Parse(Console.ReadLine()!);
+            Option ReservationOption = (Option)int.Parse(Console.ReadLine());
             Console.WriteLine("*** -- *** -- ***");
             switch (ReservationOption)
             {
@@ -241,8 +256,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void BillingDisplay()
         {
-            string textToEnter = "*** -- Welcome to Billing -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Billing: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Billings.");
             Console.WriteLine("2..Create New Billing.");
@@ -253,7 +268,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option BillingOption = (Option)int.Parse(Console.ReadLine()!);
+            Option BillingOption = (Option)int.Parse(Console.ReadLine());
             Console.WriteLine("*** -- *** -- ***");
             switch (BillingOption)
             {
