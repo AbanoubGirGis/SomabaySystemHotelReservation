@@ -20,6 +20,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("3..Customers");
             Console.WriteLine("4..Reservations");
             Console.WriteLine("5..Billing");
+            Console.WriteLine("6..Exit");
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
@@ -46,6 +47,12 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
                 case AdminOption.Billing:
                     BillingDisplay();
+                    break;
+
+                case AdminOption.Exit:
+                    Console.Clear();
+                    Welcome welcome = new Welcome();
+                    welcome.WelcomeMethod();
                     break;
 
                 default:
@@ -75,18 +82,26 @@ namespace SomabaySystem.Admin_VS_Receptionist
             {
                 case Option.Read:
                     function.SelectHotels();
+                    Console.WriteLine("\n");
+                    HotelDisplay();
                     break;
 
                 case Option.Create:
                     function.CreateHotels();
+                    Console.WriteLine("\n");
+                    HotelDisplay();
                     break;
 
                 case Option.Update:
                     function.UpdateeHotels();
+                    Console.WriteLine("\n");
+                    HotelDisplay();
                     break;
-                
+
                 case Option.Delete:
-                    function.deleteeHotels();
+                    function.DeleteeHotels();
+                    Console.WriteLine("\n");
+                    HotelDisplay();
                     break;
 
                 case Option.Back:

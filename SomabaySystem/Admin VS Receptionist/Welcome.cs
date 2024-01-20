@@ -91,7 +91,6 @@ namespace SomabaySystem
         {
             int newPass;
             newPass = Convert.ToInt32(password);
-            //string connectionString = "Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
@@ -113,7 +112,6 @@ namespace SomabaySystem
         {
             int newPass;
             newPass = Convert.ToInt32(password);
-           // string connectionString = "Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
@@ -132,5 +130,4 @@ namespace SomabaySystem
         }
 
     }
-    
 }
