@@ -33,8 +33,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
         {
             function.SelectHotels();
             function.ReadroomOperation();
-            room=function.UpdateRoomOperation();
-            function.SelectCustomer();
+            function.UpdateRoomOperation();
+            function.CreateCustomer();
             //customer= function.CreateCustomer();
             //  reservation = function.Createresvation();  not make yet
 

@@ -86,7 +86,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
                     break;
                 
                 case Option.Delete:
-                    function.DeleteeHotels();
+                    function.deleteeHotels();
                     break;
 
                 case Option.Back:

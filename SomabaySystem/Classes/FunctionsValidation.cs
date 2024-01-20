@@ -17,6 +17,7 @@ namespace SomabaySystem.Classes
             while (ValidID == false)
             {
                 Console.Write("Enter ID: ");
+                //ValidID = int.TryParse(Console.ReadLine(), out x);
                 ValidID = int.TryParse(Console.ReadLine(), out x);
                 if (ValidID)
                 {
