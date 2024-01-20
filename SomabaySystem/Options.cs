@@ -12,7 +12,8 @@ namespace HostelReservation
         Rooms,
         Customers,
         Reservation,
-        Billing
+        Billing,
+        Exit
     }
     enum Option
     {

@@ -27,6 +27,7 @@ namespace SomabaySystem.Classes
             return ValidID;
         }
         #endregion
+
         #region checkinValidation
         public static bool CheckinValid(string date)
         {
