@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,8 +22,8 @@ namespace HostelReservation.Classes
             customer.FullName = Console.ReadLine()!;
             Console.Write("Enter Customer City: ");
             customer.City = Console.ReadLine()!;
-            Console.Write("Enter Customer Phone Number: ");
-            customer.Phonenumber = Console.ReadLine();
+            //Console.Write("Enter Customer Phone Number: ");
+            customer.Phonenumber = FunctionsValidation.GetNumericInput("Enter Customer Phone Number:");
             customer.Create(customer);
             Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
             //return customer;
@@ -34,21 +36,21 @@ namespace HostelReservation.Classes
         public void UpdateCustomer()
         {
             Customer customer = new Customer();
-            Console.WriteLine("enter the customer Id ");
-            customer.ID = int.Parse(Console.ReadLine()!);
+            //Console.WriteLine("enter the customer Id ");
+            customer.ID = FunctionsValidation.ValidationID();
             Console.Write("Enter Customer Name: ");
             customer.FullName = Console.ReadLine()!;
             Console.Write("Enter Customer City: ");
             customer.City = Console.ReadLine()!;
-            Console.Write("Enter Customer Phone Number: ");
-            customer.Phonenumber = Console.ReadLine()!;
+            //Console.Write("Enter Customer Phone Number: ");
+            customer.Phonenumber = FunctionsValidation.GetNumericInput("Enter Customer Phone Number: ");
             customer.Update(customer);
         }
         public void DeleteCustomer()
         {
             Customer customer = new Customer();
-            Console.WriteLine("enter the customer id ");
-            customer.ID = int.Parse(Console.ReadLine()!);
+            //Console.WriteLine("enter the customer id ");
+            customer.ID = FunctionsValidation.ValidationID();
             customer.Delete(customer);
         }
 
