@@ -13,28 +13,21 @@ namespace SomabaySystem.Classes
         #region Validation ID
         public static int ValidationID()
         {
-            bool validID = false;
-            int validatedID = 0;
-
-            while (!validID)
+            bool ValidID = false;
+            while (ValidID == false)
             {
-
-                string? userInput = Console.ReadLine();
-
-                if (int.TryParse(userInput, out int parsedValue))
+                Console.Write("Enter ID: ");
+                ValidID = int.TryParse(Console.ReadLine(), out x);
+                if (ValidID)
                 {
-                    validatedID = parsedValue;
-                    validID = true;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid ID.");
+                    ValidID = true;
+                    return true;
                 }
             }
-
-            return validatedID;
+            return ValidID;
         }
         #endregion
+
         #region checkinValidation
         public static bool CheckinValid(string date)
         {
@@ -90,6 +83,26 @@ namespace SomabaySystem.Classes
             return false;
         }
 
+        #endregion
+
+        #region validation the number 
+        public static string GetNumericInput(string prompt)
+        {
+            string? userInput;
+
+            do
+            {
+                Console.Write(prompt);
+                userInput = Console.ReadLine();
+            } while (!IsNumeric(userInput));
+
+            return userInput;
+        }
+
+        public static bool IsNumeric(string input)
+        {
+            return int.TryParse(input, out _);
+        }
         #endregion
     }
 }
