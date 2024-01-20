@@ -57,8 +57,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void HotelDisplay()
         {
-            string textToEnter = "*** -- Welcome to Hotels -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Hotels: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Hotels.");
             Console.WriteLine("2..Create New Hotel.");
@@ -102,8 +102,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void RoomDisplay()
         {
-            string textToEnter = "*** -- Welcome to Rooms -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Rooms: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Rooms.");
             Console.WriteLine("2..Create New Room.");
@@ -151,8 +151,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void CustomerDisplay()
         {
-            string textToEnter = "*** -- Welcome to Customer -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Customers: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Customers.");
             Console.WriteLine("2..Create New Customer.");
@@ -198,8 +198,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void ReservationDisplay()
         {
-            string textToEnter = "*** -- Welcome to Reservation -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Reservations: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Reservations.");
             Console.WriteLine("2..Create New Reservation.");
@@ -241,8 +241,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
 
         void BillingDisplay()
         {
-            string textToEnter = "*** -- Welcome to Billing -- *** ";
-            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.WriteLine("Welcome to Billing: ");
+            Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Billings.");
             Console.WriteLine("2..Create New Billing.");
