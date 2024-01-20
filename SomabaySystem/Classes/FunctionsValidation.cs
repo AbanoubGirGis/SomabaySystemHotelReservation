@@ -18,7 +18,7 @@ namespace SomabaySystem.Classes
 
             while (!validID)
             {
-
+                Console.Write("Enter ID: ");
                 string? userInput = Console.ReadLine();
 
                 if (int.TryParse(userInput, out int parsedValue))

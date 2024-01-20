@@ -47,18 +47,7 @@ namespace HostelReservation.Classes
         {
             return nextId++;
         }
-        public void CreateCustomer()
-        {
-            Console.Write("Enter Customer Name: ");
-            FullName = Console.ReadLine();
-            Console.Write("Enter Customer City: ");
-            City = Console.ReadLine();
-            Console.Write("Enter Customer Phone Number: ");
-            Phonenumber = Console.ReadLine();
-            Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
-        }
-
-
+       
         public void Create(object CreateObj)
         {
             Customer customer = new Customer();
@@ -79,6 +68,7 @@ namespace HostelReservation.Classes
 
                     int customerId = Convert.ToInt32(command.ExecuteScalar());
                     Console.WriteLine("Customer ID: " + customerId);
+                    
                 }
             }
         }

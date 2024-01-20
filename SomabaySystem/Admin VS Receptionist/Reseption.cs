@@ -1,5 +1,6 @@
 ﻿using HostelReservation;
 using HostelReservation.Classes;
+using SomabaySystem.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,14 @@ namespace SomabaySystem.Admin_VS_Receptionist
         Function function=new Function();
         public void ReseptionOptions()
         {
-
-            
+            Console.Clear();
             Console.WriteLine("How can I help you today?");
             Console.WriteLine(" 1 checkin \n 2 checkout");
             int choice=int.Parse(Console.ReadLine());
             switch (choice)
             {
                 case 1:Checkin(); ReseptionOptions(); break;
-               // case 2:Checkout(); ReseptionOptions(); break;
+                case 2:Checkout(); ReseptionOptions(); break;
             }
 
         }
@@ -33,14 +33,20 @@ namespace SomabaySystem.Admin_VS_Receptionist
         {
             function.SelectHotels();
             function.ReadroomOperation();
-            function.UpdateRoomOperation();
+            Console.Write("Enter Room Number: ");
+            room.RoomId= FunctionsValidation.ValidationID();
             function.CreateCustomer();
-            //customer= function.CreateCustomer();
-            //  reservation = function.Createresvation();  not make yet
+            function.createReservation(room.RoomId);
+            //function.billing finction to create;
+            // function to show bill after create
+            Console.WriteLine("****checkin successfully  Welcome To Our Hotel");
+            Console.ReadKey();
 
-
-
-
+        }
+        public void Checkout()
+        {
+            //check billing if has bill=> pay
+            //else cw=>good bye
         }
 
 

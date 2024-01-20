@@ -113,7 +113,6 @@ namespace HostelReservation.Classes
             //}
             //else
             //    Console.WriteLine("\nRoom id: {0} does not exist in database....\n", room.RoomId);
-            //return room;
         }
         #endregion
 
@@ -177,11 +176,10 @@ namespace HostelReservation.Classes
         #endregion
 
         #region Reservation Function
-        public  static void createReservation() 
+        public   void createReservation(int RoomId) 
         {
             Reservation R = new Reservation();
-            Console.Write("Enter ID: ");
-             R.RoomID= FunctionsValidation.ValidationID();
+            R.RoomID= RoomId;
             Console.Write("Enter Customer Id ");
             R.CustomerID = FunctionsValidation.ValidationID();
             Console.Write("Enter CheckIn ");
@@ -192,14 +190,14 @@ namespace HostelReservation.Classes
             Console.Write("Enter CheckOut ");
             string checkOut = Console.ReadLine();
             FunctionsValidation.CheckoutValid(checkIn, checkOut);
-            if (DateTime.TryParse(checkIn, out DateTime dateValue1))
+            if (DateTime.TryParse(checkOut, out DateTime dateValue1))
             R.ReservationCheckOut = dateValue1;
             R.Create(R);
             Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
         }
         
 
-        public   static void SelectReservation() //select all data from reservation and customer name 
+        public  void SelectReservation() //select all data from reservation and customer name 
         {
             Reservation  Res = new Reservation();
             Res.Read(Res);
@@ -219,21 +217,21 @@ namespace HostelReservation.Classes
             Reservation R = new Reservation();
             Console.WriteLine("Enter The reservation Id");
             R.ReservationId = int.Parse(Console.ReadLine());
-            FunctionsValidation.ValidationID(R.ReservationId);
+            FunctionsValidation.ValidationID();
             Console.WriteLine("Enter The roome Id ");
             R.RoomID = int.Parse(Console.ReadLine());
-            FunctionsValidation.ValidationID(R.RoomID);
+            FunctionsValidation.ValidationID();
             Console.WriteLine("Enter check in ");
             string? s = Console.ReadLine();
-
+            FunctionsValidation.CheckinValid(s);
 
             Console.WriteLine("Enter The check out");
             string checkout = Console.ReadLine();
-            FunctionsValidation.CheckinValid(time);
+            FunctionsValidation.CheckoutValid(s,checkout);
             Console.WriteLine("enter the hotel phone");
             R.CustomerID = int.Parse(Console.ReadLine());
             Console.WriteLine("enter the hotel zipcode");
-            H.ZipCode = int.Parse(Console.ReadLine());
+            //R.ZipCode = int.Parse(Console.ReadLine());
 
         }
         #endregion

@@ -44,7 +44,7 @@ namespace HostelReservation.Classes
                 string insertQuery = "INSERT INTO Reservation VALUES (@ReservationCheckIn," +
                     " @ReservationCheckOut," +
                     " @RoomID, @CustomerID)" +
-                    ";UPDATE Room SET RoomStatus = 'U' WHERE RoomID = @RoomID; ";
+                    ";UPDATE Room SET RoomStatus = 'F' WHERE RoomID = @RoomID; ";
 
                 using (SqlCommand command = new SqlCommand(insertQuery, connection))
                 {
