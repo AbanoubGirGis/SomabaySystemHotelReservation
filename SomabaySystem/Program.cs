@@ -20,8 +20,6 @@ namespace HostelReservation
 
             Welcome welcome = new Welcome();
             welcome.WelcomeMethod();
-            
-
         }
     }
 }
