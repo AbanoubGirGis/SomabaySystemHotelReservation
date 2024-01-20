@@ -13,18 +13,26 @@ namespace SomabaySystem.Classes
         #region Validation ID
         public static int ValidationID()
         {
-            bool ValidID = false;
-            while (ValidID == false)
+            bool validID = false;
+            int validatedID = 0;
+
+            while (!validID)
             {
-                Console.Write("Enter ID: ");
-                ValidID = int.TryParse(Console.ReadLine(), out x);
-                if (ValidID)
+
+                string? userInput = Console.ReadLine();
+
+                if (int.TryParse(userInput, out int parsedValue))
                 {
-                    ValidID = true;
-                    return true;
+                    validatedID = parsedValue;
+                    validID = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid ID.");
                 }
             }
-            return ValidID;
+
+            return validatedID;
         }
         #endregion
 
