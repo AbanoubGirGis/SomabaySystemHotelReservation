@@ -14,6 +14,14 @@ namespace HostelReservation
         Reservation,
         Billing
     }
+    enum ResptionOption
+    {
+        Hotels = 1,
+        Rooms,
+        Customers,
+        Reservation,
+        Billing
+    }
     enum Option
     {
         Read = 1,

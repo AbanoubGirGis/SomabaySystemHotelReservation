@@ -12,7 +12,7 @@ namespace HostelReservation.Classes
     {
         #region customer functions
 
-        public void CreateCustomer()
+        public Customer CreateCustomer()
         {
             Customer customer = new Customer();
             Console.Write("Enter Customer Name: ");
@@ -21,8 +21,9 @@ namespace HostelReservation.Classes
             customer.City = Console.ReadLine();
             Console.Write("Enter Customer Phone Number: ");
             customer.Phonenumber = Console.ReadLine();
-            Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
             customer.Create(customer);
+            Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
+            return customer;
         }
         public void SelectCustomer()
         {
@@ -90,7 +91,7 @@ namespace HostelReservation.Classes
             room.Delete(room);
         }
 
-        public void UpdateRoomOperation()
+        public Rooms UpdateRoomOperation()
         {
             Rooms room = new Rooms();
             Console.Write("Enter Room Number: ");
@@ -111,7 +112,7 @@ namespace HostelReservation.Classes
             //}
             //else
             //    Console.WriteLine("\nRoom id: {0} does not exist in database....\n", room.RoomId);
-
+            return room;
         }
         #endregion
 

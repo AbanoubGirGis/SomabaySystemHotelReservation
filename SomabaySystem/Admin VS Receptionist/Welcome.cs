@@ -48,7 +48,8 @@ namespace SomabaySystem
                 Console.WriteLine("\n");
                 String Welcome = $"Welcome to Somabay System Receptionist: {username}";
                 Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (Welcome.Length / 2)) + "}", Welcome));
-
+                Reseption reseption = new Reseption();
+                reseption.ReseptionOptions();
             }
             else
             {
@@ -112,7 +113,7 @@ namespace SomabaySystem
         {
             int newPass;
             newPass = Convert.ToInt32(password);
-            //string connectionString = "Data Source=DESKTOP-MLSL318\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
+           // string connectionString = "Data Source=DESKTOP-VD76OGN\\SQLEXPRESS01;Initial Catalog=Somabay;Integrated Security=True";
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
