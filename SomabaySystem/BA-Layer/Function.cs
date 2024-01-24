@@ -69,53 +69,66 @@ namespace HostelReservation.Classes
             rooms.RatesRooms = decimal.Parse(Console.ReadLine()!);
 
             Console.Write("Enter Number Of Hotel: ");
-            rooms.HotelId = int.Parse(Console.ReadLine()!);
-            //if (!DBconnection.CheckPkExists(rooms.HotelId))
-            //    Console.WriteLine("Incorect Hotel Id");
-
-            rooms.Create(rooms);
-            Console.WriteLine("\n*** -- ** Succusfully ** -- ***\n");
+            rooms.HotelId = FunctionsValidation.ValidationID();
+            if(FunctionsValidation.DoesHotelExistValdition(rooms.HotelId))
+            {
+                rooms.Create(rooms);
+                Console.WriteLine("\n*** -- ** Succusfully ** -- ***\n");
+            }
+            else
+                Console.WriteLine("\n*** -- ** Un Succusfully. Try Again ** -- ***\n");
         }
 
         public void ReadroomOperation()
         {
             Rooms room = new Rooms();
             Console.Write("Enter Hotel Number: ");
-            room.HotelId = int.Parse(Console.ReadLine()!);
-            room.Read(room);
+            room.HotelId = FunctionsValidation.ValidationID();
+            if (FunctionsValidation.DoesHotelExistValdition(room.HotelId))
+            {
+                room.Read(room);
+                Console.WriteLine("\n*** -- ** Succusfully ** -- ***\n");
+            }
+            else
+                Console.WriteLine("\n*** -- ** Un Succusfully. Try Again ** -- ***\n");
         }
 
         public void DeleteRoomOpertion()
         {
             Rooms room = new Rooms();
             Console.Write("Enter Hotel Number: ");
-            room.HotelId = int.Parse(Console.ReadLine()!);
-            Console.Write("Enter Room Number: ");
-            room.RoomId = int.Parse(Console.ReadLine()!);
-            room.Delete(room);
+            room.HotelId = FunctionsValidation.ValidationID();
+            if (FunctionsValidation.DoesHotelExistValdition(room.HotelId))
+            {
+                Console.Write("Enter Room Number: ");
+                room.RoomId = FunctionsValidation.ValidationID();
+                room.Delete(room);
+                Console.WriteLine("\n*** -- ** Succusfully ** -- ***\n");
+            }
+            else
+                Console.WriteLine("\n*** -- ** Un Succusfully. Try Again ** -- ***\n");
         }
 
         public void UpdateRoomOperation()
         {
             Rooms room = new Rooms();
-            Console.Write("Enter Room Number: ");
-            room.RoomId = int.Parse(Console.ReadLine()!);
-            //if (DBconnection.CheckPkRoomExists(room.RoomId))
-            //{
-            //    Console.Write("Enter Number Of Beds: ");
-            //    room.NumberBeds = int.Parse(Console.ReadLine());
 
-            //    Console.Write("Enter Rates Of Room: ");
-            //    room.RatesRooms = decimal.Parse(Console.ReadLine());
+            Console.Write("Enter Hotel Number: ");
+            room.HotelId = FunctionsValidation.ValidationID();
+            if (FunctionsValidation.DoesHotelExistValdition(room.HotelId))
+            {
+                Console.Write("Enter Room Number: ");
+                room.RoomId = FunctionsValidation.ValidationID();
+                Console.Write("Enter Number Of Beds: ");
+                room.NumberBeds = int.Parse(Console.ReadLine()!);
+                Console.Write("Enter Rates Of Room: ");
+                room.RatesRooms = decimal.Parse(Console.ReadLine()!);
+                room.Update(room);
 
-            //    Console.Write("Enter Number Of Hotel: ");
-            //    room.HotelId = int.Parse(Console.ReadLine());
-            //    if (!DBconnection.CheckPkExists(room.HotelId))
-            //        Console.WriteLine("Incorect Hotel Id");
-            //    room.Update(room);
-            //}
-            //else
-            //    Console.WriteLine("\nRoom id: {0} does not exist in database....\n", room.RoomId);
+                Console.WriteLine("\n*** -- ** Succusfully ** -- ***\n");
+            }
+            else
+                Console.WriteLine("\n*** -- ** Un Succusfully. Try Again ** -- ***\n");
         }
         #endregion
 

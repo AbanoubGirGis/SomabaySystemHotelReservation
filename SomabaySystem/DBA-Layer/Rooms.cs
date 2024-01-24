@@ -131,7 +131,10 @@ namespace HostelReservation.Classes
                 using (SqlCommand cmd = new SqlCommand(UpdateRoom, con))
                 {
                     int ctr = cmd.ExecuteNonQuery();
-                    Console.WriteLine("\nRoom id: {0} updated successfully....\n", rooms.RoomId);
+                    if (ctr > 0)
+                        Console.WriteLine("\nRoom id: {0} updated successfully....\n", rooms.RoomId);
+                    else
+                        Console.WriteLine($"\nRoom Id: {rooms.RoomId} Not Found in the database....\n");
                 }
             }
         }
@@ -143,21 +146,23 @@ namespace HostelReservation.Classes
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
-
-                string deleteQuery = $"delete from Room where RoomID = {rooms.RoomId} and HotelID = {rooms.HotelId}";
-
-                using (SqlCommand cmd = new SqlCommand(deleteQuery, con))
+                try
                 {
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    string deleteQuery = $"delete from Room where RoomID = {rooms.RoomId} and HotelID = {rooms.HotelId}";
 
-                    if (rowsAffected > 0)
-                        Console.WriteLine($"\nRoom Id : {rooms.RoomId} deleted....\n");
-                    else
-                        Console.WriteLine($"\nRoom Id: {rooms.RoomId} Not Found in the database....\n");
+                    using (SqlCommand cmd = new SqlCommand(deleteQuery, con))
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                            Console.WriteLine($"\nRoom Id : {rooms.RoomId} deleted....\n");
+                        else
+                            Console.WriteLine($"\nRoom Id: {rooms.RoomId} Not Found in the database....\n");
+                    }
                 }
+                catch (Exception) { Console.WriteLine("Can not Deleted Because Already Customer Reserve This Room"); }
             }
         }
-
         #endregion
     }
 }
