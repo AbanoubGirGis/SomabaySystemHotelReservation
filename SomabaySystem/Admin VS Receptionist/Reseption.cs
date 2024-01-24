@@ -21,7 +21,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.Clear();
             Console.WriteLine("How can I help you today?");
             Console.WriteLine(" 1 checkin \n 2 checkout");
-            int choice=int.Parse(Console.ReadLine());
+            int choice=int.Parse(Console.ReadLine()!);
             switch (choice)
             {
                 case 1:Checkin(); ReseptionOptions(); break;
@@ -47,7 +47,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
         public void Checkout()
         {
             Console.WriteLine("enter the customer ID:");
-            int id=int.Parse(Console.ReadLine());
+            int id=int.Parse(Console.ReadLine()!);
             function.selectbilling(id);
         }
 

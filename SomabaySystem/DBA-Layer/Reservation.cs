@@ -44,7 +44,7 @@ namespace HostelReservation.Classes
                 string insertQuery = "INSERT INTO Reservation VALUES (@ReservationCheckIn," +
                     " @ReservationCheckOut," +
                     " @RoomID, @CustomerID)" +
-                    ";UPDATE Room SET RoomStatus = 'F' WHERE RoomID = @RoomID; ";
+                    ";UPDATE Room SET RoomStatus = 'U' WHERE RoomID = @RoomID; ";
 
                 using (SqlCommand command = new SqlCommand(insertQuery, connection))
                 {
@@ -57,7 +57,6 @@ namespace HostelReservation.Classes
                     command.ExecuteNonQuery();
                 }
             }
-            //
         }
 
         public void Read(object obj) {
@@ -91,7 +90,7 @@ namespace HostelReservation.Classes
                             DateTime checkOut = (DateTime)reader["ReservationCheckOut"];
                             int roomID = (int)reader["RoomID"];
                             
-                            string customerFullName = reader["CustomerFullName"].ToString();
+                            string customerFullName = reader["CustomerFullName"].ToString()!;
 
                             table.AddRow(reservationID, checkIn, checkOut, roomID, customerFullName);
                         }
@@ -166,7 +165,7 @@ namespace HostelReservation.Classes
                             DateTime checkOut = (DateTime)reader["ReservationCheckOut"];
                             int roomID = (int)reader["RoomID"];
 
-                            string customerFullName = reader["CustomerFullName"].ToString();
+                            string customerFullName = reader["CustomerFullName"].ToString()!;
 
                             table.AddRow(reservationID, checkIn, checkOut, roomID, customerFullName);
                         }

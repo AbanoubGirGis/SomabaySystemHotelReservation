@@ -68,25 +68,21 @@ namespace SomabaySystem
         {
             string password = "";
             ConsoleKeyInfo key;
-            if((key = Console.ReadKey(true)).Key != ConsoleKey.Enter)
+
+            while ((key = Console.ReadKey(true)).Key != ConsoleKey.Enter)
             {
-                while ((key = Console.ReadKey(true)).Key != ConsoleKey.Enter)
+                if (char.IsControl(key.KeyChar) && key.Key == ConsoleKey.Backspace && password.Length > 0)
                 {
-                    if (char.IsControl(key.KeyChar) && key.Key == ConsoleKey.Backspace && password.Length > 0)
-                    {
-                        password = password[..^1];
-                        Console.Write("\b \b");
-                    }
-                    else if (!char.IsControl(key.KeyChar))
-                    {
-                        password += key.KeyChar;
-                        Console.Write("*");
-                    }
+                    password = password[..^1];
+                    Console.Write("\b \b");
+                }
+                else if (!char.IsControl(key.KeyChar))
+                {
+                    password += key.KeyChar;
+                    Console.Write("*");
                 }
             }
 
-            else
-                return "";
 
             return password;
         }
@@ -111,6 +107,5 @@ namespace SomabaySystem
                 }
             }
         }
-
     }
 }

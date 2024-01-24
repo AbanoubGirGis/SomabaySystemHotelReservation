@@ -88,7 +88,7 @@ namespace HostelReservation.Classes
                         {
                             val = new string[reader.FieldCount];
                             for (int i = 0; i < reader.FieldCount; i++)
-                                val[i] = Convert.ToString(reader.GetValue(i));
+                                val[i] = Convert.ToString(reader.GetValue(i))!;
                             table.AddRow(val[0], val[1], val[2], val[3]);
                         }
                         table.Write();
@@ -131,7 +131,7 @@ namespace HostelReservation.Classes
                         {
                             val = new string[sqlDataReader.FieldCount];
                             for (int i = 0; i < sqlDataReader.FieldCount; i++)
-                                val[i] = Convert.ToString(sqlDataReader.GetValue(i));
+                                val[i] = Convert.ToString(sqlDataReader.GetValue(i))!;
                             table.AddRow(val[0], val[1], val[2], val[3]);
                         }
                         table.Write();

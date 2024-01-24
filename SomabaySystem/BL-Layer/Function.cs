@@ -198,15 +198,25 @@ namespace HostelReservation.Classes
             R.RoomID = RoomId;
             Console.Write("Enter Customer Id ");
             R.CustomerID = FunctionsValidation.ValidationID();
-            Console.Write("Enter CheckIn ");
-            string checkIn = Console.ReadLine();
-            FunctionsValidation.CheckinValid(checkIn);
+            string checkIn;        
+             do
+            {
+                Console.Write("Enter CheckIn ");
+                checkIn = Console.ReadLine()!;
+            }
+            while (!FunctionsValidation.CheckinValid(checkIn));
             if (DateTime.TryParse(checkIn, out DateTime dateValue))
                 R.ReservationCheckIn = dateValue;
-            Console.Write("Enter CheckOut ");
-            string checkOut = Console.ReadLine();
-            FunctionsValidation.CheckoutValid(checkIn, checkOut);
-            if (DateTime.TryParse(checkOut, out DateTime dateValue1))
+            string checkout;
+            do
+            {
+                 
+                Console.Write("Enter Checkout ");
+                checkout = Console.ReadLine()!;
+            }
+            while (!FunctionsValidation.CheckoutValid(checkIn,checkout));
+            
+            if (DateTime.TryParse(checkout, out DateTime dateValue1))
                 R.ReservationCheckOut = dateValue1;
             R.Create(R);
             Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
@@ -223,7 +233,7 @@ namespace HostelReservation.Classes
         {
             Reservation re = new Reservation();
             Console.WriteLine("Enter the customer id ");
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine()!);
             re.ReadId(id);
         }
 
@@ -231,22 +241,22 @@ namespace HostelReservation.Classes
         {
             Reservation R = new Reservation();
             Console.WriteLine("Enter The reservation Id");
-            R.ReservationId = int.Parse(Console.ReadLine());
+            R.ReservationId = int.Parse(Console.ReadLine()!);
             FunctionsValidation.ValidationID();
             Console.WriteLine("Enter The roome Id ");
-            R.RoomID = int.Parse(Console.ReadLine());
+            R.RoomID = int.Parse(Console.ReadLine()!);
             FunctionsValidation.ValidationID();
             Console.WriteLine("Enter check in ");
             string? s = Console.ReadLine();
-            FunctionsValidation.CheckinValid(s);
+            FunctionsValidation.CheckinValid(s!);
 
             Console.WriteLine("Enter The check out");
-            string checkout = Console.ReadLine();
-            FunctionsValidation.CheckoutValid(s, checkout);
+            string checkout = Console.ReadLine()!;
+            FunctionsValidation.CheckoutValid(s!, checkout);
             Console.WriteLine("enter the hotel phone");
-            R.CustomerID = int.Parse(Console.ReadLine());
+            R.CustomerID = int.Parse(Console.ReadLine()!);
             Console.WriteLine("enter the hotel zipcode");
-            //R.ZipCode = int.Parse(Console.ReadLine());
+            
 
         }
         #endregion
@@ -272,7 +282,7 @@ namespace HostelReservation.Classes
             decimal total = money * numberofdays;
             Console.WriteLine($"total Money = {total}");
             Console.WriteLine("Enter the amount of money you will ");
-            decimal paied = decimal.Parse(Console.ReadLine());
+            decimal paied = decimal.Parse(Console.ReadLine()!);
             decimal deposit = total - paied;
             Console.WriteLine($" deposit ={deposit}");
             Bill bill = new Bill(obj.CustomerID, numberofdays, money, deposit);
@@ -293,7 +303,7 @@ namespace HostelReservation.Classes
                         {
                             val = new string[reader.FieldCount];
                             for (int i = 0; i < reader.FieldCount; i++)
-                                val[i] = Convert.ToString(reader.GetValue(i));
+                                val[i] = Convert.ToString(reader.GetValue(i))!;
                             table.AddRow(val[0], val[1], val[2], val[3], val[4]);
                         }
                         table.Write();
@@ -303,7 +313,7 @@ namespace HostelReservation.Classes
                 }
                 con.Close();
             }
-            bill.Create(bill);
+           
 
         }
 
@@ -325,13 +335,13 @@ namespace HostelReservation.Classes
                         {
                             val = new string[reader.FieldCount];
                             for (int i = 0; i < reader.FieldCount; i++)
-                                val[i] = Convert.ToString(reader.GetValue(i));
+                                val[i] = Convert.ToString(reader.GetValue(i))!;
                             table.AddRow(val[0], val[1], val[2], val[3], val[4]);
                         }
                         table.Write();
                         Console.WriteLine();
                         Console.WriteLine("you have to pay your bill\n1)pay\n2)call 122");
-                        int choice=int.Parse(Console.ReadLine());
+                        int choice=int.Parse(Console.ReadLine()!);
                         switch (choice)
                         {
                             case 1:updatebilling(id);
@@ -354,7 +364,8 @@ namespace HostelReservation.Classes
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
-                string query = $"update Billing set Deposit=0 where CustomerID={id}";
+                string query = $"update Billing set Deposit=0 where CustomerID={id};" +
+                    $"UPDATE Room SET RoomStatus = 'U' from Customer C,Reservation Res,Room R WHERE C.CustomerId = Res.CustomerID and Res.RoomID = R.RoomID and C.CustomerId = {id};";
                 using (SqlCommand command = new SqlCommand(query, con))
                 {
                     command.ExecuteNonQuery();
