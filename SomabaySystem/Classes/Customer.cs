@@ -15,27 +15,25 @@ namespace HostelReservation.Classes
     {
         //fields
         private int id;
-        private static int nextId = 1;
-        private string fname;
-        private string fullName;
-        private string city;
-        private string phonenumber;
-        private string zipcode;
+        //private static int nextId = 1;
+        private string? fullName;
+        private string ?city;
+        private string ?phonenumber;
 
         //props
         public int ID { get { return id; } set { id = value; } }
 
-        public string FullName
+        public string? FullName
         {
             get { return fullName; }
             set { fullName = value; }
         }
-        public string City
+        public string? City
         {
             get { return city; }
             set { city = value; }
         }
-        public string Phonenumber
+        public string? Phonenumber
         {
             get { return phonenumber; }
             set { phonenumber = value; }
@@ -43,10 +41,10 @@ namespace HostelReservation.Classes
 
 
         //method
-        public static int Generateid()
-        {
-            return nextId++;
-        }
+        //public static int Generateid()
+        //{
+        //    return nextId++;
+        //}
        
         public void Create(object CreateObj)
         {

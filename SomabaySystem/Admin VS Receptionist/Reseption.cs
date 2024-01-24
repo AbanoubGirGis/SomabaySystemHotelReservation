@@ -36,7 +36,8 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.Write("Enter Room Number: ");
             room.RoomId= FunctionsValidation.ValidationID();
             function.CreateCustomer();
-            function.createReservation(room.RoomId);
+            reservation=function.createReservation(room.RoomId);
+            function.CreateBilling(reservation);
             //function.billing finction to create;
             // function to show bill after create
             Console.WriteLine("****checkin successfully  Welcome To Our Hotel");
@@ -45,8 +46,9 @@ namespace SomabaySystem.Admin_VS_Receptionist
         }
         public void Checkout()
         {
-            //check billing if has bill=> pay
-            //else cw=>good bye
+            Console.WriteLine("enter the customer ID:");
+            int id=int.Parse(Console.ReadLine());
+            function.selectbilling(id);
         }
 
 

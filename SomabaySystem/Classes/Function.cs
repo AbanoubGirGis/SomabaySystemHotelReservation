@@ -1,4 +1,5 @@
-﻿using SomabaySystem.Classes;
+﻿using ConsoleTables;
+using SomabaySystem.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -122,7 +123,7 @@ namespace HostelReservation.Classes
         public void CreateHotels()
         {
             Hotels h = new Hotels();
-           
+
             Console.Write("Enter Hotel Name: ");
             h.Name = Console.ReadLine()!;
             Console.Write("Enter ZipCode of hotels : ");
@@ -178,37 +179,38 @@ namespace HostelReservation.Classes
         #endregion
 
         #region Reservation Function
-        public   void createReservation(int RoomId) 
+        public Reservation createReservation(int RoomId)
         {
             Reservation R = new Reservation();
-            R.RoomID= RoomId;
+            R.RoomID = RoomId;
             Console.Write("Enter Customer Id ");
             R.CustomerID = FunctionsValidation.ValidationID();
             Console.Write("Enter CheckIn ");
             string checkIn = Console.ReadLine();
             FunctionsValidation.CheckinValid(checkIn);
             if (DateTime.TryParse(checkIn, out DateTime dateValue))
-            R.ReservationCheckIn = dateValue;
+                R.ReservationCheckIn = dateValue;
             Console.Write("Enter CheckOut ");
             string checkOut = Console.ReadLine();
             FunctionsValidation.CheckoutValid(checkIn, checkOut);
             if (DateTime.TryParse(checkOut, out DateTime dateValue1))
-            R.ReservationCheckOut = dateValue1;
+                R.ReservationCheckOut = dateValue1;
             R.Create(R);
             Console.WriteLine(" *** -- Saved Sucessfuly -- ***");
+            return R;
         }
-        
 
-        public  void SelectReservation() //select all data from reservation and customer name 
+
+        public void SelectReservation() //select all data from reservation and customer name 
         {
-            Reservation  Res = new Reservation();
+            Reservation Res = new Reservation();
             Res.Read(Res);
-        } 
+        }
 
 
         public static void SelectResverationId()  //this function to get data for reservation for specicific  customer id 
         {
-            Reservation re= new Reservation();  
+            Reservation re = new Reservation();
             Console.WriteLine("Enter the customer id ");
             int id = int.Parse(Console.ReadLine());
             re.ReadId(id);
@@ -229,7 +231,7 @@ namespace HostelReservation.Classes
 
             Console.WriteLine("Enter The check out");
             string checkout = Console.ReadLine();
-            FunctionsValidation.CheckoutValid(s,checkout);
+            FunctionsValidation.CheckoutValid(s, checkout);
             Console.WriteLine("enter the hotel phone");
             R.CustomerID = int.Parse(Console.ReadLine());
             Console.WriteLine("enter the hotel zipcode");
@@ -237,5 +239,117 @@ namespace HostelReservation.Classes
 
         }
         #endregion
+
+        #region Billing
+        public void CreateBilling(Reservation obj)
+        {
+            decimal money;
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
+            {
+                con.Open();
+
+                string select = $"select RoomMoney from Room WHERE RoomID={obj.RoomID}";
+
+                using (SqlCommand command = new SqlCommand(select, con))
+                {
+                    money = Convert.ToDecimal(command.ExecuteScalar());
+
+
+                }
+            }
+            int numberofdays = obj.ReservationCheckOut.Day - obj.ReservationCheckIn.Day;
+            decimal total = money * numberofdays;
+            Console.WriteLine($"total Money = {total}");
+            Console.WriteLine("Enter the amount of money you will ");
+            decimal paied = decimal.Parse(Console.ReadLine());
+            decimal deposit = total - paied;
+            Console.WriteLine($" deposit ={deposit}");
+            Bill bill = new Bill(obj.CustomerID, numberofdays, money, deposit);
+            bill.Create(bill);
+            string[] val;
+            var table = new ConsoleTable("Billing ID", "Customer ID", "DaysNumber", "Room charge", "Deposit");
+
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
+            {
+                con.Open();
+                string selectCustoers = $"select *from Billing where CustomerID={bill.CustomerId}";
+                using (SqlCommand command = new SqlCommand(selectCustoers, con))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            val = new string[reader.FieldCount];
+                            for (int i = 0; i < reader.FieldCount; i++)
+                                val[i] = Convert.ToString(reader.GetValue(i));
+                            table.AddRow(val[0], val[1], val[2], val[3], val[4]);
+                        }
+                        table.Write();
+                        Console.WriteLine();
+                    }
+                    else { Console.WriteLine("NO rows existed"); }
+                }
+                con.Close();
+            }
+            bill.Create(bill);
+
+        }
+        public void selectbilling(int id)
+        {
+            string[] val;
+            var table = new ConsoleTable("Billing ID", "Customer ID", "DaysNumber", "Room charge", "Deposit");
+
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
+            {
+                con.Open();
+                string selectCustoers = $"select *from Billing where CustomerID={id}";
+                using (SqlCommand command = new SqlCommand(selectCustoers, con))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            val = new string[reader.FieldCount];
+                            for (int i = 0; i < reader.FieldCount; i++)
+                                val[i] = Convert.ToString(reader.GetValue(i));
+                            table.AddRow(val[0], val[1], val[2], val[3], val[4]);
+                        }
+                        table.Write();
+                        Console.WriteLine();
+                        Console.WriteLine("you have to pay your bill\n1)pay\n2)call 122");
+                        int choice=int.Parse(Console.ReadLine());
+                        switch (choice)
+                        {
+                            case 1:updatebilling(id);
+                                Console.WriteLine(" paied suucessfully");
+                                    break;
+                            case 2: Console.WriteLine("police is calling");break;
+                        }
+                                
+                        }
+                    else { Console.WriteLine("WE WISH TO VISIT US SOON ");  }
+                }
+                con.Close();
+                Console.ReadKey();
+            }
+
+        }
+        public void updatebilling(int id)
+        {
+            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
+            {
+                con.Open();
+                string query = $"update Billing set Deposit=0 where CustomerID={id}";
+                using (SqlCommand command = new SqlCommand(query, con))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
+        #endregion
+
+

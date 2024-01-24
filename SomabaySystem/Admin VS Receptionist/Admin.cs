@@ -232,9 +232,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
                 case Option.Read:
                     break;
 
-                case Option.Create:
-                    break;
-
+                
                 case Option.Update:
                     break;
 
