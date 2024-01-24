@@ -119,7 +119,7 @@ namespace HostelReservation.Classes
         }
         #endregion
 
-        #region Hotel Functions
+        #region Hotel Functionss
         public void CreateHotels()
         {
             Hotels h = new Hotels();
