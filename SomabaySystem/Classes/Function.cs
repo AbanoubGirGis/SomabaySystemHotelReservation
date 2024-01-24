@@ -200,7 +200,6 @@ namespace HostelReservation.Classes
             return R;
         }
 
-
         public void SelectReservation() //select all data from reservation and customer name 
         {
             Reservation Res = new Reservation();
@@ -208,7 +207,7 @@ namespace HostelReservation.Classes
         }
 
 
-        public static void SelectResverationId()  //this function to get data for reservation for specicific  customer id 
+        public void SelectResverationId()  //this function to get data for reservation for specicific  customer id 
         {
             Reservation re = new Reservation();
             Console.WriteLine("Enter the customer id ");
@@ -216,7 +215,7 @@ namespace HostelReservation.Classes
             re.ReadId(id);
         }
 
-        public static void UpdateReservation()
+        public void UpdateReservation()
         {
             Reservation R = new Reservation();
             Console.WriteLine("Enter The reservation Id");

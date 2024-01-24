@@ -136,18 +136,26 @@ namespace SomabaySystem.Admin_VS_Receptionist
             {
                 case Option.Read:
                     function.ReadroomOperation();
+                    Console.WriteLine("\n");
+                    RoomDisplay();
                     break;
 
                 case Option.Create:
                     function.CreateRoomOperation();
+                    Console.WriteLine("\n");
+                    RoomDisplay();
                     break;
 
                 case Option.Update:
                     function.UpdateRoomOperation();
+                    Console.WriteLine("\n");
+                    RoomDisplay();
                     break;
 
                 case Option.Delete:
                     function.DeleteRoomOpertion();
+                    Console.WriteLine("\n");
+                    RoomDisplay();
                     break;
 
                 case Option.Back:
@@ -184,18 +192,26 @@ namespace SomabaySystem.Admin_VS_Receptionist
             {
                 case Option.Read:
                     function.SelectCustomer();
+                    Console.WriteLine("\n");
+                    CustomerDisplay();
                     break;
 
                 case Option.Create:
                     function.CreateCustomer();
+                    Console.WriteLine("\n");
+                    CustomerDisplay();
                     break;
 
                 case Option.Update:
                     function.UpdateCustomer();
+                    Console.WriteLine("\n");
+                    CustomerDisplay();
                     break;
 
                 case Option.Delete:
                     function.DeleteCustomer();
+                    Console.WriteLine("\n");
+                    CustomerDisplay();
                     break;
 
                 case Option.Back:
@@ -217,8 +233,7 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Reservations.");
-            Console.WriteLine("2..Create New Reservation.");
-            Console.WriteLine("3..Update Reservation.");
+            Console.WriteLine("2..Update Reservation.");
             Console.WriteLine("4..Delete Reservation");
             Console.WriteLine("5..Back..");
             Console.WriteLine("*** -- *** -- ***");
@@ -230,13 +245,21 @@ namespace SomabaySystem.Admin_VS_Receptionist
             switch (ReservationOption)
             {
                 case Option.Read:
+                    function.SelectReservation();
+                    Console.WriteLine("\n");
+                    ReservationDisplay();
                     break;
 
-                
                 case Option.Update:
+                    function.UpdateReservation();
+                    Console.WriteLine("\n");
+                    ReservationDisplay();
                     break;
 
                 case Option.Delete:
+                    function.SelectResverationId();
+                    Console.WriteLine("\n");
+                    ReservationDisplay();
                     break;
 
                 case Option.Back:
