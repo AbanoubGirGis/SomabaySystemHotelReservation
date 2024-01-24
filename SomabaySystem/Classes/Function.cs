@@ -206,7 +206,6 @@ namespace HostelReservation.Classes
             Res.Read(Res);
         }
 
-
         public void SelectResverationId()  //this function to get data for reservation for specicific  customer id 
         {
             Reservation re = new Reservation();
@@ -294,6 +293,7 @@ namespace HostelReservation.Classes
             bill.Create(bill);
 
         }
+
         public void selectbilling(int id)
         {
             string[] val;
@@ -335,6 +335,7 @@ namespace HostelReservation.Classes
             }
 
         }
+
         public void updatebilling(int id)
         {
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
@@ -347,6 +348,14 @@ namespace HostelReservation.Classes
                 }
             }
         }
+
+        public void SelectAllBilling()
+        {
+            Console.WriteLine("****** -- All Billing -- *****");
+            Bill bill = new Bill(0,0,0,0);
+            bill.Read(bill);
+        }
+
     }
 }
         #endregion

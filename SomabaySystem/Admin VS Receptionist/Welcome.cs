@@ -23,8 +23,9 @@ namespace SomabaySystem
             Console.Write("\t \t \t \t Enter password: ");
             string password = ReadPassword();
 
-            bool isAdmin = CheckCredentials(username, password);
-            bool isReseption = CheckCredentialsToReseption(username, password);
+            bool isAdmin = CheckAdminOrReseption(username,password, "admin");
+            bool isReseption = CheckAdminOrReseption(username, password, "reseption");
+
             if (isAdmin)
             {
                 Console.Clear();
@@ -53,9 +54,13 @@ namespace SomabaySystem
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("\n\n");
                 string faild = "Invalid username or password. Login failed.";
                 Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (faild.Length / 2)) + "}", faild));
+                Console.WriteLine();
+                WelcomeMethod();
+
             }
         }
 
@@ -63,64 +68,42 @@ namespace SomabaySystem
         {
             string password = "";
             ConsoleKeyInfo key;
-
-            do
+            if((key = Console.ReadKey(true)).Key != ConsoleKey.Enter)
             {
-                key = Console.ReadKey(true);
-
-                if (char.IsControl(key.KeyChar))
+                while ((key = Console.ReadKey(true)).Key != ConsoleKey.Enter)
                 {
-                    if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+                    if (char.IsControl(key.KeyChar) && key.Key == ConsoleKey.Backspace && password.Length > 0)
                     {
-                        password = password.Substring(0, password.Length - 1);
+                        password = password[..^1];
                         Console.Write("\b \b");
                     }
+                    else if (!char.IsControl(key.KeyChar))
+                    {
+                        password += key.KeyChar;
+                        Console.Write("*");
+                    }
                 }
-                else
-                {
-                    password += key.KeyChar;
-                    Console.Write("*");
-                }
-            } while (key.Key != ConsoleKey.Enter);
+            }
 
-            Console.WriteLine(); 
+            else
+                return "";
+
             return password;
         }
 
-        bool CheckCredentials(string username, string password)
+        bool CheckAdminOrReseption(string? UserName, string? Password, string UserType)
         {
-            int newPass;
-            newPass = Convert.ToInt32(password);
+           
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
 
-                string query = $"SELECT COUNT(*) FROM Login WHERE Username = @username AND Password = @password and Type = 'Admin'";
+                string query = $"SELECT COUNT(*) FROM Login WHERE Username = @username AND Password = @password AND Type = @userType";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", newPass);
-
-                    int count = (int)cmd.ExecuteScalar();
-
-                    return count > 0;
-                }
-            }
-        }
-
-        bool CheckCredentialsToReseption(string username, string password)
-        {
-            int newPass;
-            newPass = Convert.ToInt32(password);
-            using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
-            {
-                con.Open();
-
-                string query = $"SELECT COUNT(*) FROM Login WHERE Username = @username AND Password = @password and Type = 'reseption'";
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", newPass);
+                    cmd.Parameters.AddWithValue("@Username", UserName);
+                    cmd.Parameters.AddWithValue("@Password", Password);
+                    cmd.Parameters.AddWithValue("@userType", UserType); 
 
                     int count = (int)cmd.ExecuteScalar();
 

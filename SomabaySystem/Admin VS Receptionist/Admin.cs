@@ -1,5 +1,6 @@
 ﻿using HostelReservation;
 using HostelReservation.Classes;
+using SomabaySystem.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -233,36 +234,36 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Reservations.");
-            Console.WriteLine("2..Update Reservation.");
-            Console.WriteLine("4..Delete Reservation");
-            Console.WriteLine("5..Back..");
+            Console.WriteLine("2..Show Reservation By ID .");
+            Console.WriteLine("3..Update Reservation");
+            Console.WriteLine("4..Back..");
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option ReservationOption = (Option)int.Parse(Console.ReadLine());
+            Option2 ReservationOption = (Option2)int.Parse(Console.ReadLine()!);
             Console.WriteLine("*** -- *** -- ***");
             switch (ReservationOption)
             {
-                case Option.Read:
+                case Option2.ReadAll:
                     function.SelectReservation();
                     Console.WriteLine("\n");
                     ReservationDisplay();
                     break;
 
-                case Option.Update:
-                    function.UpdateReservation();
-                    Console.WriteLine("\n");
-                    ReservationDisplay();
-                    break;
-
-                case Option.Delete:
+                case Option2.ReadByID:
                     function.SelectResverationId();
                     Console.WriteLine("\n");
                     ReservationDisplay();
                     break;
 
-                case Option.Back:
+                case Option2.Update:
+                    function.UpdateReservation();
+                    Console.WriteLine("\n");
+                    ReservationDisplay();
+                    break;
+
+                case Option2.Back:
                     AdminOptions();
                     Console.WriteLine("*** -- *** -- ***");
                     break;
@@ -281,31 +282,38 @@ namespace SomabaySystem.Admin_VS_Receptionist
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.WriteLine("1..Show All Billings.");
-            Console.WriteLine("2..Create New Billing.");
+            Console.WriteLine("2..Show Billing By ID");
             Console.WriteLine("3..Update Billings.");
-            Console.WriteLine("4..Delete Billings.");
-            Console.WriteLine("5..Back..");
+            Console.WriteLine("4..Back..");
             Console.WriteLine("*** -- *** -- ***");
             Console.WriteLine();
             Console.Write("Your Chooice: ");
             Function function = new Function();
-            Option BillingOption = (Option)int.Parse(Console.ReadLine());
+            Option2 BillingOption = (Option2)int.Parse(Console.ReadLine());
             Console.WriteLine("*** -- *** -- ***");
             switch (BillingOption)
             {
-                case Option.Read:
+                case Option2.ReadAll:
+                    function.SelectAllBilling();
+                    Console.WriteLine("\n");
+                    BillingDisplay();
                     break;
 
-                case Option.Create:
+                case Option2.ReadByID:
+                    int Id = FunctionsValidation.ValidationID();
+                    function.selectbilling(Id);
+                    Console.WriteLine("\n");
+                    BillingDisplay();
                     break;
 
-                case Option.Update:
+                case Option2.Update:
+                    int IdUpdate = FunctionsValidation.ValidationID();
+                    function.updatebilling(IdUpdate);
+                    Console.WriteLine("\n");
+                    BillingDisplay();
                     break;
 
-                case Option.Delete:
-                    break;
-
-                case Option.Back:
+                case Option2.Back:
                     AdminOptions();
                     Console.WriteLine("*** -- *** -- ***");
                     break;

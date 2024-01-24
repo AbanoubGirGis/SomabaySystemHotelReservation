@@ -15,6 +15,7 @@ namespace HostelReservation
         Billing,
         Exit
     }
+
     enum Option
     {
         Read = 1,
@@ -23,5 +24,12 @@ namespace HostelReservation
         Delete,
         Back
     }
- 
+
+    enum Option2
+    {
+        ReadAll = 1,
+        ReadByID,
+        Update,
+        Back
+    } 
 }
