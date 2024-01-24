@@ -112,5 +112,31 @@ namespace SomabaySystem.Classes
             return int.TryParse(input, out _);
         }
         #endregion
+
+        #region Name Validation
+        public static string ValidateString()
+        {
+            bool validInput = false;
+            string validatedString = string.Empty;
+
+            while (!validInput)
+            {
+                Console.Write("Enter Name: ");
+                string userInput = Console.ReadLine()!;
+
+                if (!string.IsNullOrWhiteSpace(userInput) && !userInput.Any(char.IsDigit))
+                {
+                    validatedString = userInput;
+                    validInput = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid string without numbers or special characters.");
+                }
+            }
+
+            return validatedString;
+        }
+        #endregion
     }
 }
