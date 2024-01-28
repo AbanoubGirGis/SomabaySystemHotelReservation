@@ -12,7 +12,7 @@ namespace HostelReservation.Classes
         private static int HotelZipCode;
         #endregion
 
-        #region Property of Hotel
+        #region Property of Hotell
         public int ID { get { return HotelId; } set { HotelId = value; } }
         public string Name { get { return HotelName!; } set { HotelName = value; } }
         public int ZipCode { get { return HotelZipCode; } set { HotelZipCode = value; } }
@@ -66,7 +66,7 @@ namespace HostelReservation.Classes
                             table.AddRow(val[0], val[1], val[2], val[3]);
                         }
                         table.Write();
-                        Console.WriteLine();
+                        //Console.WriteLine();
                     }
                     else { Console.WriteLine("NO rows existed"); }
                 }
