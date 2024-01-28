@@ -68,13 +68,14 @@ namespace HostelReservation.Classes
             {
                 con.Open();
 
-                string addCustomerQuery = "INSERT INTO Room VALUES (@RatesRoom, @NumberBeds, @HotelId); SELECT SCOPE_IDENTITY();";
+                string addCustomerQuery = "INSERT INTO Room VALUES (@NumberBeds,'A', @RatesRoom, @HotelId); SELECT SCOPE_IDENTITY();";
 
                 using (SqlCommand command = new SqlCommand(addCustomerQuery, con))
                 {
                     command.Parameters.AddWithValue("@RatesRoom", RatesRooms);
                     command.Parameters.AddWithValue("@NumberBeds", NumberBeds);
                     command.Parameters.AddWithValue("@HotelId", HotelId);
+                    command.ExecuteNonQuery();
                 }
             }
         }
@@ -92,7 +93,7 @@ namespace HostelReservation.Classes
                 var table = new ConsoleTable("RoomNumber", "Number Of Beds", "Rates", "Hotel Name");
 
                 string showAllRooms = $"Select r.RoomID,r.RoomBedsNumber,r.RoomMoney ,h.HotelName " +
-                    $"from Room r ,Hotel h  where h.HotelId = r.HotelID and RoomStatus = 'T'  and r.HotelID =" + rooms.hotelId;
+                    $"from Room r ,Hotel h  where h.HotelId = r.HotelID and RoomStatus = 'A'  and r.HotelID =" + rooms.hotelId;
 
                 using (SqlCommand command = new SqlCommand(showAllRooms, con))
                 {
@@ -104,7 +105,7 @@ namespace HostelReservation.Classes
                             {
                                 val = new string[reader.FieldCount];
                                 for (int i = 0; i < reader.FieldCount; i++)
-                                    val[i] = Convert.ToString(reader.GetValue(i));
+                                    val[i] = Convert.ToString(reader.GetValue(i))!;
                                 table.AddRow(val[0], val[1], val[2] + " $", val[3]);
                             }
                             table.Write();
@@ -116,7 +117,6 @@ namespace HostelReservation.Classes
                 }
             }
         }
-
 
         public void Update(object UpdateObj)
         {
@@ -131,38 +131,38 @@ namespace HostelReservation.Classes
                 using (SqlCommand cmd = new SqlCommand(UpdateRoom, con))
                 {
                     int ctr = cmd.ExecuteNonQuery();
-                    Console.WriteLine("\nRoom id: {0} updated successfully....\n", rooms.RoomId);
+                    if (ctr > 0)
+                        Console.WriteLine("\nRoom id: {0} updated successfully....\n", rooms.RoomId);
+                    else
+                        Console.WriteLine($"\nRoom Id: {rooms.RoomId} Not Found in the database....\n");
                 }
             }
         }
 
-        public void Delete(object DeleteObj)
+        public void Delete(object deleteObj)
         {
-            Rooms rooms = (Rooms)DeleteObj;
+            Rooms rooms = (Rooms)deleteObj;
 
             using (SqlConnection con = new SqlConnection(Program.PublicConnectionString))
             {
                 con.Open();
+                try
+                {
+                    string deleteQuery = $"delete from Room where RoomID = {rooms.RoomId} and HotelID = {rooms.HotelId}";
 
-                string DeleteRoomID = $"delete from Room where RoomID = {rooms.RoomId} and HotelID = {rooms.HotelId}";
-                int ctr = ExecuteQueries(DeleteRoomID, con);
+                    using (SqlCommand cmd = new SqlCommand(deleteQuery, con))
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
 
-                if (ctr > 0)
-                    Console.WriteLine($"\nRoom Id : {rooms.RoomId} deleted....\n");
-                else
-                    Console.WriteLine($"\nRoom Id: {rooms.RoomId} Not Found in the database....\n");
+                        if (rowsAffected > 0)
+                            Console.WriteLine($"\nRoom Id : {rooms.RoomId} deleted....\n");
+                        else
+                            Console.WriteLine($"\nRoom Id: {rooms.RoomId} Not Found in the database....\n");
+                    }
+                }
+                catch (Exception) { Console.WriteLine("Can not Deleted Because Already Customer Reserve This Room"); }
             }
         }
-
-        private int ExecuteQueries(string query, SqlConnection con)
-        {
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            {
-                return cmd.ExecuteNonQuery();
-            }
-        }
-
         #endregion
-
     }
 }
